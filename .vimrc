@@ -1,4 +1,4 @@
-:set number relativenumber
+set number relativenumber
 
 :augroup numbertoggle
 :  autocmd!
@@ -8,3 +8,9 @@
 
 
 nmap 0 ^
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
+set nojoinspaces
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  syntax on
+endif
