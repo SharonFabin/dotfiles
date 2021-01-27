@@ -6,7 +6,8 @@ set number relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
-
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
 nmap 0 ^
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching

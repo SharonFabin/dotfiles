@@ -7,7 +7,10 @@ CapsLock::Esc
 ^!Left::Send        {Media_Prev}
 ^!Right::Send       {Media_Next}
 ^!m::Send  {Volume_Mute}
-
+^j::Send {Down}
+^k::Send {Up}
+^h::Send {Left}
+^l::Send {Right}
 scrollAmount := 3
 
 #IfWinActive ahk_class AcrobatSDIWindow
