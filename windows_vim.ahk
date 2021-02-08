@@ -3,9 +3,13 @@ CapsLock::Esc
 
 ^!Down::Send {Volume_Down}
 ^!Up::Send {Volume_Up}
-^!Space::Send       {Media_Play_Pause}
 ^!Left::Send        {Media_Prev}
 ^!Right::Send       {Media_Next}
+^!j::Send {Volume_Down}
+^!k::Send {Volume_Up}
+^!h::Send        {Media_Prev}
+^!l::Send       {Media_Next}
+^!Space::Send       {Media_Play_Pause}
 ^!m::Send  {Volume_Mute}
 ^j::Send {Down}
 ^k::Send {Up}
