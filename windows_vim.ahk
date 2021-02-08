@@ -11,6 +11,8 @@ CapsLock::Esc
 ^k::Send {Up}
 ^h::Send {Left}
 ^l::Send {Right}
+^#h::Send ^#{Left}
+^#l::Send ^#{Right}
 scrollAmount := 3
 
 #IfWinActive ahk_class AcrobatSDIWindow
