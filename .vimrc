@@ -8,6 +8,7 @@ set number relativenumber
 
 inoremap <C-k> <Up>
 inoremap <C-j> <Down>
+inoremap <Space> <Space><C-g>
 nmap 0 ^
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
