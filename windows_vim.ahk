@@ -17,7 +17,7 @@ CapsLock::Esc
 ^l::Send {Right}
 ^#h::Send ^#{Left}
 ^#l::Send ^#{Right}
-#l::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0)
+; #l::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0)
 scrollAmount := 3
 
 #IfWinActive ahk_class AcrobatSDIWindow
