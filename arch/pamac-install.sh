@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt update
+sudo pamac update
 
 function install {
   which $1 &> /dev/null
@@ -22,6 +22,7 @@ install git
 install htop
 install nmap
 install tmux
+install fish
 install vim
 install ttf-fira-code
 install docker
