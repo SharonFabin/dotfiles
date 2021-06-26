@@ -27,6 +27,7 @@ install vim
 install ttf-fira-code
 install docker
 install starship
+install scrot
 
 # Image processing
 install gimp
