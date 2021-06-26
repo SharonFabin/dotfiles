@@ -26,6 +26,7 @@ install fish
 install vim
 install ttf-fira-code
 install docker
+install starship
 
 # Image processing
 install gimp
