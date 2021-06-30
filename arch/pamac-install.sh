@@ -28,6 +28,13 @@ install ttf-fira-code
 install docker
 install starship
 install scrot
+install xmonad
+install xmonad-contrib
+install xmobar
+install nitrogen
+install picom
+install trayer
+install nm-applet
 
 # Image processing
 install gimp
