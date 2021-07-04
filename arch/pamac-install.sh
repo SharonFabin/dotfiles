@@ -26,6 +26,7 @@ install fish
 install vim
 install ttf-fira-code
 install docker
+install alacritty
 install starship
 install scrot
 install xmonad
@@ -42,4 +43,5 @@ install gimp
 # Fun stuff
 install figlet
 install lolcat
+install neofetch
 
