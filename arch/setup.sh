@@ -14,5 +14,10 @@ chmod -R +x ./scripts
 # source ~/.bashrc
 
 # Fun hello
-figlet "dont forget to link xmonad.hs, and we're back!" | lolcat
+echo "Things to setup:"
+echo "1. natural input scrolling"
+echo "2. gtk theme with lxappearance"
+echo "3. xmonad.hs"
+echo "4. If you have bluetooth problems (particulary A2DP profile problem), downgrade bluez to 1.58 with pamac install downgrade"
+figlet "...and we're back!" | lolcat
 
