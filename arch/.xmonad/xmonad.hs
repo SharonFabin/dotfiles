@@ -17,20 +17,22 @@ import System.IO
 terminal_workspace = "\xf66b "
 web_workspace = "\xfa9e "
 dev_workspace = "\xf121 "
+chat_workspace = "\xf868 "
 music_workspace = "\xf1bc "
-myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, "1", "2", "3", "5", "6", music_workspace]
+myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, chat_workspace, "2", "3", "5", "6", music_workspace]
 myBorderWidth = 1
 myNormalBorderColor  = "#290000"
-myFocusedBorderColor = "#755454"
+myFocusedBorderColor = "#eb4034"
 
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , className =? "Code" --> doShift dev_workspace
-    , className =? "Spotify" --> doShift music_workspace
+    , className =? "spotify" --> doShift music_workspace
     , className =? "Google-chrome" --> doShift web_workspace
     , className =? "firefox" --> doShift web_workspace
+    , className =? "Whatsapp-for-linux" --> doShift chat_workspace
     , isFullscreen -->  doFullFloat
     , resource  =? "kdesktop"       --> doIgnore ]
 
