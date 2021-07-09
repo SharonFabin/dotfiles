@@ -33,9 +33,9 @@ install xmonad
 install xmonad-contrib
 install xmobar
 install nitrogen
-install picom
 install trayer
 install nm-applet
+install playerctl
 
 # Image processing
 install gimp
