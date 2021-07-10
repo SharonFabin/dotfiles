@@ -1,3 +1,4 @@
+set clipboard=unnamedplus
 set number relativenumber
 
 :augroup numbertoggle
@@ -16,3 +17,11 @@ set nojoinspaces
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
+
+set laststatus=2
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+    

@@ -14,6 +14,7 @@ import XMonad.Layout.NoBorders
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
+rofi_launcher = "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\""
 terminal_workspace = "\xf66b "
 web_workspace = "\xfa9e "
 dev_workspace = "\xf121 "
@@ -78,6 +79,7 @@ main = do
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod4Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock2.sh")
+        , ((mod1Mask , xK_p), spawn rofi_launcher)
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
         , ((0, xK_Print), spawn "scrot")
 	, ((0, xF86XK_AudioLowerVolume   ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")

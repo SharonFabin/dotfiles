@@ -19,5 +19,5 @@ Config { font = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %UnsafeStdinReader% } <fc=#eb4034> </fc> %song%{ %cpu% | %battery% | %default:Master% | <fc=#eb4034> </fc> %date%"
+       , template = " %UnsafeStdinReader% } <fc=#eb4034> </fc> %song%{ %cpu% | %battery% | %default:Master% | <fc=#eb4034> </fc> %date%"
        }

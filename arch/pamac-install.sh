@@ -23,7 +23,7 @@ install htop
 install nmap
 install tmux
 install fish
-install vim
+install gvim
 install ttf-fira-code
 install docker
 install alacritty
