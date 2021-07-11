@@ -6,7 +6,7 @@ revert() {
 }
 
 trap revert HUP INT TERM
-scrot /tmp/locking_screen.png --silent
+maim /tmp/locking_screen.png
 convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
 convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 /tmp/screen.png
 i3lock -u -i /tmp/screen.png

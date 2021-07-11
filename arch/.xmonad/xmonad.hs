@@ -8,9 +8,11 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.Navigation2D
+import XMonad.Layout.WindowNavigation
 import XMonad.Layout.Spacing
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.NoBorders
+import XMonad.Layout.ResizableTile( MirrorResize( MirrorShrink, MirrorExpand ) )
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
@@ -39,7 +41,7 @@ myManageHook = composeAll
 
 
 myStartupHook = do
-        spawnOnce "picom --experimental-backends &"
+        spawnOnce "picom &"
         spawnOnce "nm-applet &"
         spawnOnce "nitrogen --restore &"
         spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/lock2.sh' &"
@@ -60,7 +62,7 @@ main = do
         False
         $ docks defaultConfig
         { handleEventHook    = fullscreenEventHook
-        , layoutHook = avoidStruts $ smartBorders $ mySpacing 8 $ layoutHook defaultConfig
+        , layoutHook = avoidStruts $ smartBorders $ windowNavigation $ mySpacing 8 $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = (\str -> "")
@@ -80,16 +82,24 @@ main = do
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod4Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock2.sh")
         , ((mod1Mask , xK_p), spawn rofi_launcher)
-        , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
-        , ((0, xK_Print), spawn "scrot")
-	, ((0, xF86XK_AudioLowerVolume   ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-        , ((0, xF86XK_AudioRaiseVolume   ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-        , ((0, xF86XK_AudioMute          ), spawn "amixer set Master toggle")
-        , ((mod4Mask, xK_F1          ), spawn "playerctl play-pause")
-        , ((mod4Mask, xK_F2          ), spawn "playerctl previous")
-        , ((mod4Mask, xK_F3          ), spawn "playerctl next")
+        , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/Screenshots/$(date +%s).png")
+        , ((0, xK_Print), spawn "maim ~/Pictures/Screenshots/$(date +%s).png")
+	, ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+        , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+        , ((0, xF86XK_AudioMute), spawn "amixer set Master toggle")
+        , ((mod4Mask, xK_F1), spawn "playerctl play-pause")
+        , ((mod4Mask, xK_F2), spawn "playerctl previous")
+        , ((mod4Mask, xK_F3), spawn "playerctl next")
 	, ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%")
 	, ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%")
 	, ((mod4Mask, xK_space), spawn "$HOME/dotfiles/arch/scripts/layout_switch.sh")
+	, ((mod1Mask, xK_l), sendMessage $ Go R)
+	, ((mod1Mask, xK_h), sendMessage $ Go L)
+   	, ((mod1Mask, xK_k), sendMessage $ Go U)
+   	, ((mod1Mask, xK_j), sendMessage $ Go D)
+	, ((mod1Mask .|. shiftMask, xK_h), sendMessage Shrink)
+	, ((mod1Mask .|. shiftMask, xK_l), sendMessage Expand)
+	, ((mod1Mask .|. shiftMask, xK_j), sendMessage MirrorShrink)
+	, ((mod1Mask .|. shiftMask, xK_k), sendMessage MirrorExpand)
         ]
 

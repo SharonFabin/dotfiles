@@ -28,7 +28,7 @@ install ttf-fira-code
 install docker
 install alacritty
 install starship
-install scrot
+install maim
 install xmonad
 install xmonad-contrib
 install xmobar
@@ -36,6 +36,7 @@ install nitrogen
 install trayer
 install nm-applet
 install playerctl
+install dunst
 
 # Image processing
 install gimp
