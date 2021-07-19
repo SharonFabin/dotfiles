@@ -27,6 +27,8 @@ myBorderWidth = 1
 myNormalBorderColor  = "#290000"
 myFocusedBorderColor = "#eb4034"
 
+myModMask = mod1Mask 
+
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
@@ -53,7 +55,8 @@ mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 
 main = do   
-    xmproc <- spawnPipe "xmobar $HOME/.config/xmobar/xmobarrc0"
+    xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc0"
+    xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmobar/xmobarrc0"
     xmonad 
         $ navigation2D def
         (xK_Up, xK_Left, xK_Down, xK_Right)
@@ -64,14 +67,17 @@ main = do
         { handleEventHook    = fullscreenEventHook
         , layoutHook = avoidStruts $ smartBorders $ windowNavigation $ mySpacing 8 $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
-                        { ppOutput = hPutStrLn xmproc
+                        --{ ppOutput = hPutStrLn xmproc
+			
+			{ ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
+				        >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
                         , ppTitle = (\str -> "")
                         , ppCurrent = xmobarColor "#eb4034" "" . wrap "" ""
                         , ppSep = " | "
                         , ppOrder  = \(ws:l:t:_)   -> [ws]
                         }
 	, terminal = "alacritty"
-        , modMask = mod1Mask     -- Rebind Mod to the Windows key
+        , modMask = mod4Mask     -- Rebind Mod to the Windows key
 	, startupHook = myStartupHook
         , workspaces = myWorkspaces
         , borderWidth = myBorderWidth
@@ -79,9 +85,9 @@ main = do
         , normalBorderColor = myNormalBorderColor
         , manageHook = myManageHook <+> manageHook defaultConfig
         } `additionalKeys`
-        [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-        , ((mod4Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock2.sh")
-        , ((mod1Mask , xK_p), spawn rofi_launcher)
+        [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
+        , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock2.sh")
+        , ((mod4Mask , xK_p), spawn rofi_launcher)
         , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/Screenshots/$(date +%s).png")
         , ((0, xK_Print), spawn "maim ~/Pictures/Screenshots/$(date +%s).png")
 	, ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
@@ -92,14 +98,14 @@ main = do
         , ((mod4Mask, xK_F3), spawn "playerctl next")
 	, ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%")
 	, ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%")
-	, ((mod4Mask, xK_space), spawn "$HOME/dotfiles/arch/scripts/layout_switch.sh")
-	, ((mod1Mask, xK_l), sendMessage $ Go R)
-	, ((mod1Mask, xK_h), sendMessage $ Go L)
-   	, ((mod1Mask, xK_k), sendMessage $ Go U)
-   	, ((mod1Mask, xK_j), sendMessage $ Go D)
-	, ((mod1Mask .|. shiftMask, xK_h), sendMessage Shrink)
-	, ((mod1Mask .|. shiftMask, xK_l), sendMessage Expand)
-	, ((mod1Mask .|. shiftMask, xK_j), sendMessage MirrorShrink)
-	, ((mod1Mask .|. shiftMask, xK_k), sendMessage MirrorExpand)
+	, ((mod1Mask, xK_space), spawn "$HOME/dotfiles/arch/scripts/layout_switch.sh")
+	, ((mod4Mask, xK_l), sendMessage $ Go R)
+	, ((mod4Mask, xK_h), sendMessage $ Go L)
+   	, ((mod4Mask, xK_k), sendMessage $ Go U)
+   	, ((mod4Mask, xK_j), sendMessage $ Go D)
+	, ((mod4Mask .|. shiftMask, xK_h), sendMessage Shrink)
+	, ((mod4Mask .|. shiftMask, xK_l), sendMessage Expand)
+	, ((mod4Mask .|. shiftMask, xK_j), sendMessage MirrorShrink)
+	, ((mod4Mask .|. shiftMask, xK_k), sendMessage MirrorExpand)
         ]
 

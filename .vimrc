@@ -1,5 +1,7 @@
 set clipboard=unnamedplus
 set number relativenumber
+set paste
+filetype plugin indent on
 
 :augroup numbertoggle
 :  autocmd!
@@ -7,8 +9,6 @@ set number relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
-inoremap <C-k> <Up>
-inoremap <C-j> <Down>
 inoremap <Space> <Space><C-g>
 nmap 0 ^
 set showcmd       " display incomplete commands

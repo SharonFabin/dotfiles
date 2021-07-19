@@ -8,13 +8,13 @@ killall xcape
 if [[ -n "$1" ]]; then
     setxkbmap $1
 else
-	layout=$(setxkbmap -query | awk 'END{print $2}')
+	layout=$(setxkbmap -query | awk 'FNR==3{print $2}')
 	    case $layout in
 		us)
-			setxkbmap il
+			setxkbmap il -option "altwin:swap_alt_win"
 			;;
 		*)
-			setxkbmap us
+			setxkbmap us -option "altwin:swap_alt_win"
 			~/dotfiles/arch/scripts/vim_keyboard_bindings.sh
 			;;
 		esac
