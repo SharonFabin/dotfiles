@@ -10,9 +10,8 @@ Config { font = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
 		    , Run Battery [
 			"-t", "<acstatus> <left>%",
 			"--",
-			--"-c", "charge_full",
-			"-O", "<fc=#eb4034></fc>",
 			"-o", "<fc=#eb4034></fc>",
+			"-O", "<fc=#eb4034></fc>",
 			"-h", "green",
 			"-l", "red"
 			] 10

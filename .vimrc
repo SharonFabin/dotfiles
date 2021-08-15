@@ -9,7 +9,6 @@ filetype plugin indent on
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
-inoremap <Space> <Space><C-g>
 nmap 0 ^
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching

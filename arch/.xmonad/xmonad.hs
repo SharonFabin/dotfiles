@@ -20,12 +20,28 @@ rofi_launcher = "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOM
 terminal_workspace = "\xf66b "
 web_workspace = "\xfa9e "
 dev_workspace = "\xf121 "
+reading_workspace = "\xe28b "
 chat_workspace = "\xf868 "
+tasks_workspace = "\xf634 "
 music_workspace = "\xf1bc "
-myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, chat_workspace, "2", "3", "5", "6", music_workspace]
+myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, reading_workspace, chat_workspace, tasks_workspace, "5", "6", music_workspace]
 myBorderWidth = 1
 myNormalBorderColor  = "#290000"
 myFocusedBorderColor = "#eb4034"
+
+myLayout = tiled ||| Full
+  where
+    -- default tiling algorithm partitions the screen into two panes
+    tiled   = Tall nmaster delta ratio
+
+    -- The default number of windows in the master pane
+    nmaster = 1
+
+    -- Default proportion of screen occupied by master pane
+    ratio   = 1/2
+
+    -- Percent of screen to increment by when resizing panes
+    delta   = 3/100
 
 myModMask = mod1Mask 
 
@@ -38,6 +54,8 @@ myManageHook = composeAll
     , className =? "Google-chrome" --> doShift web_workspace
     , className =? "firefox" --> doShift web_workspace
     , className =? "Whatsapp-for-linux" --> doShift chat_workspace
+    , className =? "ClickUp Desktop" --> doShift tasks_workspace
+    , className =? "qpdfview" --> doShift reading_workspace
     , isFullscreen -->  doFullFloat
     , resource  =? "kdesktop"       --> doIgnore ]
 
@@ -65,7 +83,7 @@ main = do
         False
         $ docks defaultConfig
         { handleEventHook    = fullscreenEventHook
-        , layoutHook = avoidStruts $ smartBorders $ windowNavigation $ mySpacing 8 $ layoutHook defaultConfig
+        , layoutHook = avoidStruts $ smartBorders $ windowNavigation $ mySpacing 8 $ myLayout
         , logHook = dynamicLogWithPP xmobarPP
                         --{ ppOutput = hPutStrLn xmproc
 			
