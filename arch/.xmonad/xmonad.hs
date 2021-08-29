@@ -8,6 +8,7 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.Navigation2D
+import XMonad.Actions.CycleWS
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.Spacing
 import XMonad.Layout.LayoutModifier
@@ -111,9 +112,9 @@ main = do
 	, ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ((0, xF86XK_AudioMute), spawn "amixer set Master toggle")
-        , ((mod4Mask, xK_F1), spawn "playerctl play-pause")
-        , ((mod4Mask, xK_F2), spawn "playerctl previous")
-        , ((mod4Mask, xK_F3), spawn "playerctl next")
+        , ((mod4Mask, xK_F1), spawn "playerctl --player spotify play-pause")
+        , ((mod4Mask, xK_F2), spawn "playerctl --player spotify previous")
+        , ((mod4Mask, xK_F3), spawn "playerctl --player spotify next")
 	, ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%")
 	, ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%")
 	, ((mod1Mask, xK_space), spawn "$HOME/dotfiles/arch/scripts/layout_switch.sh")
@@ -121,6 +122,7 @@ main = do
 	, ((mod4Mask, xK_h), sendMessage $ Go L)
    	, ((mod4Mask, xK_k), sendMessage $ Go U)
    	, ((mod4Mask, xK_j), sendMessage $ Go D)
+   	, ((mod4Mask , xK_Tab), toggleWS)
 	, ((mod4Mask .|. shiftMask, xK_h), sendMessage Shrink)
 	, ((mod4Mask .|. shiftMask, xK_l), sendMessage Expand)
 	, ((mod4Mask .|. shiftMask, xK_j), sendMessage MirrorShrink)

@@ -19,8 +19,9 @@ endif
 
 set laststatus=2
 set noshowmode
+colorscheme codedark
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'codedark',
       \ }
 
     
