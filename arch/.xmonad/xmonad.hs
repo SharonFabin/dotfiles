@@ -3,6 +3,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.Gaps
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run(spawnPipe)
@@ -17,7 +18,17 @@ import XMonad.Layout.ResizableTile( MirrorResize( MirrorShrink, MirrorExpand ) )
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
+import Graphics.X11.ExtraTypes.XF86
+import qualified XMonad.StackSet as W
+import qualified Data.Map as M
+import qualified Data.ByteString as B
+import Control.Monad (liftM2)
+import qualified DBus as D
+import qualified DBus.Client as D
+
 rofi_launcher = "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\""
+
+-- Workspaces
 terminal_workspace = "\xf66b "
 web_workspace = "\xfa9e "
 dev_workspace = "\xf121 "
@@ -26,9 +37,12 @@ chat_workspace = "\xf868 "
 tasks_workspace = "\xf634 "
 music_workspace = "\xf1bc "
 myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, reading_workspace, chat_workspace, tasks_workspace, "5", "6", music_workspace]
+
+
 myBorderWidth = 1
 myNormalBorderColor  = "#290000"
 myFocusedBorderColor = "#eb4034"
+
 
 myLayout = tiled ||| Full
   where
@@ -45,7 +59,39 @@ myLayout = tiled ||| Full
     delta   = 3/100
 
 myModMask = mod1Mask 
+-- controlMask = ctrl key
 
+
+-- window manipulations
+myManageHook = composeAll . concat $
+    [ [isDialog --> doCenterFloat]
+    , [isFullscreen -->  doFullFloat]
+    , [className =? c --> doCenterFloat | c <- centerFloats]
+    , [title =? t --> doFloat | t <- floats]
+    , [resource =? r --> doFloat | r <- resourceFloats]
+    , [resource =? i --> doIgnore | i <- ignores]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo terminal_workspace | x <- webShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo dev_workspace | x <- devShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo reading_workspace | x <- readingShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo chat_workspace | x <- chatShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tasks_workspace | x <- tasksShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo music_workspace | x <- musicShifts]
+    ]
+    where
+    doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
+    centerFloats = ["Arandr", "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "vlc"]
+    floats = ["Downloads", "Save As..."]
+    resourceFloats = []
+    ignores = ["desktop_window"]
+    webShifts = ["Chromium", "Google-chrome", "firefox"]
+    devShifts = ["Code"]
+    readingShifts = ["qpdfview"]
+    chatShifts = ["Whatsapp-for-linux"]
+    tasksShifts = ["ClickUp Desktop"]
+    musicShifts = ["Spotify"]
+
+
+{-
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
@@ -59,18 +105,19 @@ myManageHook = composeAll
     , className =? "qpdfview" --> doShift reading_workspace
     , isFullscreen -->  doFullFloat
     , resource  =? "kdesktop"       --> doIgnore ]
+-}
 
 
 myStartupHook = do
+	spawn "~/.xmonad/scripts/autostart.sh"
         spawnOnce "picom &"
         spawnOnce "nm-applet &"
         spawnOnce "nitrogen --restore &"
         spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/lock2.sh' &"
+	setWMName "LG3D"
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
-
-
 
 
 main = do   
@@ -127,5 +174,9 @@ main = do
 	, ((mod4Mask .|. shiftMask, xK_l), sendMessage Expand)
 	, ((mod4Mask .|. shiftMask, xK_j), sendMessage MirrorShrink)
 	, ((mod4Mask .|. shiftMask, xK_k), sendMessage MirrorExpand)
+	, ((controlMask .|. mod4Mask, xK_j), windows W.swapDown  )
+	, ((controlMask .|. mod4Mask, xK_k), windows W.swapUp    )
+	, ((controlMask .|. mod4Mask, xK_Left), sendMessage (IncMasterN 1))
+	, ((controlMask .|. mod4Mask, xK_Right), sendMessage (IncMasterN (-1)))
         ]
 
