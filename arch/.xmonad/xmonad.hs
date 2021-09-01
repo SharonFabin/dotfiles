@@ -70,7 +70,7 @@ myManageHook = composeAll . concat $
     , [title =? t --> doFloat | t <- floats]
     , [resource =? r --> doFloat | r <- resourceFloats]
     , [resource =? i --> doIgnore | i <- ignores]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo terminal_workspace | x <- webShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo web_workspace | x <- webShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo dev_workspace | x <- devShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo reading_workspace | x <- readingShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo chat_workspace | x <- chatShifts]

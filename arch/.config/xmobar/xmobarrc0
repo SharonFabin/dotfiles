@@ -5,13 +5,13 @@ Config { font = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
        , commands = [ Run Cpu ["-L","3","-H","50", "-t", "<fc=#eb4034> </fc> <total>%"] 10
                     , Run Volume "default" "Master" ["-t", "<status><volume>%", "--",  "-O", "<fc=#eb4034>墳 </fc>", "-o", "<fc=#eb4034>婢 </fc>"] 10
                     , Run Com "sh" ["-c", "playerctl --player spotify metadata title | cut -c -30"] "song" 10
-                    , Run Date "%d/%m/%y | <fc=#eb4034> </fc>%H:%M " "date" 10
+                    , Run Date "%d/%m/%y | <fc=#eb4034>  </fc>%H:%M " "date" 10
                     , Run UnsafeStdinReader
 		    , Run Battery [
 			"-t", "<acstatus> <left>%",
 			"--",
-			"-o", "<fc=#eb4034></fc>",
 			"-O", "<fc=#eb4034></fc>",
+			"-o", "<fc=#eb4034></fc>",
 			"-h", "green",
 			"-l", "red"
 			] 10
