@@ -6,6 +6,7 @@ ln -s ~/dotfiles/arch/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/arch/.config/picom ~/.config/picom
 ln -s ~/dotfiles/arch/.config/rofi ~/.config/rofi
 ln -s ~/dotfiles/arch/.config/dunst ~/.config/dunst
+ln -s ~/dotfiles/arch/.config/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -s ~/dotfiles/.vimrc ~/.config/.vimrc
 ln -s ~/dotfiles/arch/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
