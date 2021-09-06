@@ -14,4 +14,4 @@ mkdir ~/.xmonad
 ln -s ~/dotfiles/arch/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 
 # Systemd
-ln -s ~/dotfiles/arch/systemd-services/wakelock@.service /etc/systemd/system/wakelock@.service
+sudo ln -s ~/dotfiles/arch/systemd-services/wakelock@.service /etc/systemd/system/wakelock@.service

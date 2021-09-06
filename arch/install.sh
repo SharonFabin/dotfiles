@@ -43,7 +43,6 @@ install tmux
 install fish
 install rofi
 install vim
-install ttf-fira-code
 install docker
 install alacritty
 install starship
@@ -55,6 +54,10 @@ install nitrogen
 install trayer
 install nm-applet
 install playerctl
+install i3lock
+install imagemagick
+install thunar
+install dolphin
 install dunst
 install xautolock
 install xorg
@@ -63,8 +66,24 @@ aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin
 aur-install chili-sddm-theme
 
+# Utils
+install autorandr
+install alsa
+install pulseaudio
+install pulseaudio-alsa
+aur-install lux
+
 # Image processing
 install gimp
+
+# Fonts
+install ttf-fira-code
+aur-install nerd-fonts-terminus
+aur-install nerd-fonts-fira-code
+
+# Theme
+install papirus-icon-theme
+aur-install plymouth-git
 
 # Fun stuff
 install figlet
