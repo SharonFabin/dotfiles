@@ -1,16 +1,13 @@
 #!/bin/bash
 
 # Give execute permissions for all scripts
-chmod -R +x ./programs
 chmod -R +x ./scripts
+chmod +x ./install.sh
 chmod +x ./symlink.sh
-chmod +x ./install_programs.sh
-chmod +x ./pamac_install.sh
 chmod +x ./setup-systemd-services.sh
 
+./install.sh
 ./symlink.sh
-./pamac_install.sh
-./install_programs.sh
 ./setup-systemd-services.sh
 
 echo "Things to setup:"

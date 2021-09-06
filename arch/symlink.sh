@@ -9,6 +9,8 @@ ln -s ~/dotfiles/arch/.config/dunst ~/.config/dunst
 ln -s ~/dotfiles/arch/.config/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -s ~/dotfiles/.vimrc ~/.config/.vimrc
+
+mkdir ~/.xmonad
 ln -s ~/dotfiles/arch/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 
 # Systemd
