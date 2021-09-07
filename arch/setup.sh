@@ -9,6 +9,8 @@ chmod +x ./setup-systemd-services.sh
 ./install.sh
 ./symlink.sh
 ./setup-systemd-services.sh
+./scripts/setup-fonts.sh
+./scripts/setup-vim.sh
 
 echo "Things to setup:"
 echo "1. natural input scrolling"

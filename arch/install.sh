@@ -1,6 +1,8 @@
 #!/bin/bash
 
 sudo pacman -Syu --noconfirm base-devel
+
+#install aura
 sudo pacman -Syu --noconfirm stack
 git clone https://github.com/fosskers/aura.git
 cd aura
@@ -8,6 +10,14 @@ stack install -- aura
 cd ..
 rm -rf aura
 export $HOME/.local/bin
+
+#install snap
+git clone https://aur.archlinux.org/snapd.git
+cd snapd
+makepkg -si --noconfirm
+sudo systemctl enable --now snapd.socket
+cd ..
+rm -rf snapd
 
 function install {
   which $1 &> /dev/null
@@ -42,7 +52,7 @@ install nmap
 install tmux
 install fish
 install rofi
-install vim
+install gvim # vim with extra features
 install docker
 install alacritty
 install starship
@@ -67,19 +77,29 @@ aur-install visual-studio-code-bin
 aur-install chili-sddm-theme
 
 # Utils
+install archlinux-keyring
+install gnome-keyring
+install polkit
+install lxsession-gtk3
+install xcape
 install autorandr
 install alsa
 install pulseaudio
 install pulseaudio-alsa
+install bluez
+install bluez-utils
+install blueman
 aur-install lux
 
 # Image processing
 install gimp
 
 # Fonts
-install ttf-fira-code
+install fontconfig
+install noto-fonts-emoji
+aur-install nerd-fonts-dejavu-complete
 aur-install nerd-fonts-terminus
-aur-install nerd-fonts-fira-code
+install ttf-fira-code
 
 # Theme
 install papirus-icon-theme

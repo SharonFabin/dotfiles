@@ -111,9 +111,11 @@ myManageHook = composeAll
 myStartupHook = do
 	spawn "~/.xmonad/scripts/autostart.sh"
         spawnOnce "picom &"
+	spawnOnce "lxpolkit &"
         spawnOnce "nm-applet &"
         spawnOnce "nitrogen --restore &"
         spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/lock2.sh' &"
+	spawnOnce "~/dotfiles/arch/scripts/set-keyboard-layout-us.sh"
 	setWMName "LG3D"
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
