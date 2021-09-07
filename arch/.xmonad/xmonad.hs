@@ -86,8 +86,8 @@ myManageHook = composeAll . concat $
     webShifts = ["Chromium", "Google-chrome", "firefox"]
     devShifts = ["Code"]
     readingShifts = ["qpdfview"]
-    chatShifts = ["Whatsapp-for-linux"]
-    tasksShifts = ["ClickUp Desktop"]
+    chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211"]
+    tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
     musicShifts = ["Spotify"]
 
 

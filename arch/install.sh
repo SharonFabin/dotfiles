@@ -42,7 +42,6 @@ function aur-install {
 }
 
 # Basics
-install base-devel
 install curl
 install exfat-utils
 install file
@@ -65,9 +64,14 @@ install trayer
 install nm-applet
 install playerctl
 install i3lock
+aur-install notion-app-enhanced
+aur-install clickup
+aur-install timeshift
 install imagemagick
 install thunar
-install dolphin
+install thunar-volman
+aur-install thunar-archive-plugin-git
+aur-install file-roller-git
 install dunst
 install xautolock
 install xorg
@@ -77,6 +81,7 @@ aur-install visual-studio-code-bin
 aur-install chili-sddm-theme
 
 # Utils
+install gvfs
 install archlinux-keyring
 install gnome-keyring
 install polkit
