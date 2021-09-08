@@ -80,6 +80,7 @@ aur-install google-chrome
 aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin
 aur-install chili-sddm-theme
+aur-install downgrade
 
 # Utils
 install gvfs
@@ -92,6 +93,7 @@ install autorandr
 install alsa
 install pulseaudio
 install pulseaudio-alsa
+install pulseaudio-bluetooth
 install bluez
 install bluez-utils
 install blueman
