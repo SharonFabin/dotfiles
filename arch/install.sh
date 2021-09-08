@@ -72,6 +72,7 @@ install thunar
 install thunar-volman
 aur-install thunar-archive-plugin-git
 aur-install file-roller-git
+install wireshark-qt
 install dunst
 install xautolock
 install xorg
@@ -109,6 +110,9 @@ install ttf-fira-code
 # Theme
 install papirus-icon-theme
 aur-install plymouth-git
+aur-install sweet-gtk-theme-dark
+aur-install sweet-cursor-theme-git
+aur-install candy-icons-git
 
 # Fun stuff
 install figlet

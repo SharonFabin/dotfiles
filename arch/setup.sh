@@ -5,17 +5,23 @@ chmod -R +x ./scripts
 chmod +x ./install.sh
 chmod +x ./symlink.sh
 chmod +x ./setup-systemd-services.sh
+chmod +x ./setup-inputs.sh
 
 ./install.sh
 ./symlink.sh
 ./setup-systemd-services.sh
-./scripts/setup-fonts.sh
-./scripts/setup-vim.sh
+./setup-inputs.sh
+./setup-vim.sh
 
+# Setup Theme
+sudo mv /usr/share/themes/Sweet-cursors /usr/share/icons/Sweet-cursors
+
+# Finishing Notes
 echo "Things to setup:"
-echo "1. natural input scrolling"
+echo "1. Read-only configs (configs are found in $HOME/dotfiles/arch/readonly-configs):
+	* suspend - config location is /etc/systemd/logind.conf
+"
 echo "2. gtk theme with lxappearance"
 echo "3. If you have bluetooth problems (particulary A2DP profile problem), downgrade bluez to 1.58 with pamac install downgrade"
-echo "4. Check that xmonad.hs was really linked and setup."
 
 figlet "Welcome" | lolcat && figlet "Back $USER" | lolcat
