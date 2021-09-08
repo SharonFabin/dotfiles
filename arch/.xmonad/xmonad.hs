@@ -8,6 +8,7 @@ import XMonad.Layout.Gaps
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.Cursor
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.CycleWS
 import XMonad.Layout.WindowNavigation
@@ -156,8 +157,8 @@ main = do
         [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock2.sh")
         , ((mod4Mask , xK_p), spawn rofi_launcher)
-        , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/Screenshots/$(date +%s).png")
-        , ((0, xK_Print), spawn "maim ~/Pictures/Screenshots/$(date +%s).png")
+        , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/screenshots/$(date +%s).jpg;notify-send 'Screen Captured'")
+        , ((0, xK_Print), spawn "maim ~/Pictures/screenshots/$(date +%s).jpg;notify-send 'Screen Captured'")
 	, ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ((0, xF86XK_AudioMute), spawn "amixer set Master toggle")

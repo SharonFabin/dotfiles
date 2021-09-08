@@ -6,12 +6,14 @@ chmod +x ./install.sh
 chmod +x ./symlink.sh
 chmod +x ./setup-systemd-services.sh
 chmod +x ./setup-inputs.sh
+chmod +x ./setup-pictures.sh
 
 ./install.sh
 ./symlink.sh
 ./setup-systemd-services.sh
 ./setup-inputs.sh
 ./setup-vim.sh
+./setup-pictures.sh
 
 # Setup Theme
 sudo mv /usr/share/themes/Sweet-cursors /usr/share/icons/Sweet-cursors

@@ -76,6 +76,7 @@ install wireshark-qt
 install dunst
 install xautolock
 install xorg
+install firefox
 aur-install google-chrome
 aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin
@@ -107,6 +108,7 @@ install fontconfig
 install noto-fonts-emoji
 aur-install nerd-fonts-dejavu-complete
 aur-install nerd-fonts-terminus
+aur-install ttf-exljbris
 install ttf-fira-code
 
 # Theme
@@ -115,6 +117,13 @@ aur-install plymouth-git
 aur-install sweet-gtk-theme-dark
 aur-install sweet-cursor-theme-git
 aur-install candy-icons-git
+
+# Firefox Theme
+git clone https://github.com/manilarome/blurredfox.git
+cd blurredfox
+install.sh
+cd ..
+rm -rf blurredfox
 
 # Fun stuff
 install figlet

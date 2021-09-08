@@ -11,6 +11,9 @@ ln -s ~/dotfiles/arch/.config/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 
+rm ~/.bash_profile
+ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
+
 mkdir ~/.xmonad
 ln -s ~/dotfiles/arch/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 
