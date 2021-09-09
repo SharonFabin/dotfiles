@@ -10,6 +10,8 @@ ln -s ~/dotfiles/arch/.config/dunst ~/.config/dunst
 ln -s ~/dotfiles/arch/.config/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -s ~/dotfiles/.vimrc ~/.vimrc
+ln -s ~/dotfiles/arch/fonts ~/.local/share/fonts
+fc-cache -fv
 
 rm ~/.bash_profile
 ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
