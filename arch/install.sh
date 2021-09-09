@@ -76,6 +76,7 @@ install wireshark-qt
 install dunst
 install xautolock
 install xorg
+install vlc
 install firefox
 aur-install google-chrome
 aur-install picom-jonaburg-git

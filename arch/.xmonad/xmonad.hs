@@ -18,6 +18,8 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile( MirrorResize( MirrorShrink, MirrorExpand ) )
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
+import Control.Monad ((>=>), join, liftM, when)
+import Data.Maybe (maybeToList)
 
 import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
@@ -28,6 +30,23 @@ import qualified DBus as D
 import qualified DBus.Client as D
 
 rofi_launcher = "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\""
+
+-- EWMH full screen support
+addNETSupported :: Atom -> X ()
+addNETSupported x   = withDisplay $ \dpy -> do
+    r               <- asks theRoot
+    a_NET_SUPPORTED <- getAtom "_NET_SUPPORTED"
+    a               <- getAtom "ATOM"
+    liftIO $ do
+       sup <- (join . maybeToList) <$> getWindowProperty32 dpy a_NET_SUPPORTED r
+       when (fromIntegral x `notElem` sup) $
+         changeProperty32 dpy r a_NET_SUPPORTED a propModeAppend [fromIntegral x]
+
+addEWMHFullscreen :: X ()
+addEWMHFullscreen   = do
+    wms <- getAtom "_NET_WM_STATE"
+    wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
+    mapM_ addNETSupported [wms, wfs]
 
 -- Workspaces
 terminal_workspace = "\xf66b "
@@ -132,7 +151,7 @@ main = do
         [       (mod4Mask,               windowGo  ),
                 (mod4Mask .|. shiftMask, windowSwap)]
         False
-        $ docks defaultConfig
+        $ docks $ ewmh defaultConfig
         { handleEventHook    = fullscreenEventHook
         , layoutHook = avoidStruts $ smartBorders $ windowNavigation $ mySpacing 8 $ myLayout
         , logHook = dynamicLogWithPP xmobarPP
@@ -147,7 +166,7 @@ main = do
                         }
 	, terminal = "alacritty"
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
-	, startupHook = myStartupHook
+	, startupHook = myStartupHook >> addEWMHFullscreen
         , workspaces = myWorkspaces
         , borderWidth = myBorderWidth
         , focusedBorderColor = myFocusedBorderColor
@@ -157,8 +176,8 @@ main = do
         [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock2.sh")
         , ((mod4Mask , xK_p), spawn rofi_launcher)
-        , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/screenshots/$(date +%s).jpg && notify-send 'Screen Captured'")
-        , ((0, xK_Print), spawn "maim ~/Pictures/screenshots/$(date +%s).jpg && notify-send 'Screen Captured'")
+        , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")
+        , ((0, xK_Print), spawn "maim ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")
 	, ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ((0, xF86XK_AudioMute), spawn "amixer set Master toggle")
