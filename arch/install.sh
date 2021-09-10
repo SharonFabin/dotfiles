@@ -85,6 +85,8 @@ aur-install chili-sddm-theme
 aur-install downgrade
 
 # Utils
+aur-install xdo-git
+aur-install devour
 install gvfs
 install archlinux-keyring
 install gnome-keyring

@@ -1,0 +1,1 @@
+alias gimp="devour gimp"
