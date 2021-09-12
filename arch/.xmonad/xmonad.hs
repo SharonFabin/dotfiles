@@ -14,6 +14,7 @@ import XMonad.Actions.CycleWS
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.Spacing
 import XMonad.Layout.LayoutModifier
+import XMonad.Layout.Tabbed
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile( MirrorResize( MirrorShrink, MirrorExpand ) )
 import Graphics.X11.ExtraTypes.XF86
@@ -62,6 +63,16 @@ myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, reading_wor
 myBorderWidth = 1
 myNormalBorderColor  = "#290000"
 myFocusedBorderColor = "#eb4034"
+myFont = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
+
+myTabTheme = def { fontName            = myFont
+                 , activeColor         = "#46d9ff"
+                 , inactiveColor       = "#313846"
+                 , activeBorderColor   = "#46d9ff"
+                 , inactiveBorderColor = "#282c34"
+                 , activeTextColor     = "#282c34"
+                 , inactiveTextColor   = "#d0d0d0"
+                 }
 
 
 myLayout = tiled ||| Full

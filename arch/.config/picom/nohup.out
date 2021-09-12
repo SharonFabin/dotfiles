@@ -1,0 +1,80 @@
+[ 10/09/21 20:49:39.668 parse_kawase_blur_strength INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000, .expand = 20]
+[ 10/09/21 20:49:39.671 wid_set_text_prop ERROR ] Failed to make text property: vgit-a8445.
+[ 10/09/21 20:49:39.671 register_cm ERROR ] Failed to set COMPTON_VERSION.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_SGI_video_sync.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_SGI_swap_control.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_OML_sync_control.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_MESA_swap_control.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_EXT_swap_control.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_EXT_texture_from_pixmap.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context.
+[ 10/09/21 20:49:39.727 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
+[ 10/09/21 20:49:39.746 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 10/09/21 20:49:39.746 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 10/09/21 20:49:39.746 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 10/09/21 20:50:18.096 configure_root INFO ] Root configuration changed, new geometry: 3840x1080
+[ 10/09/21 20:50:18.203 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 10/09/21 20:50:18.203 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 10/09/21 20:50:18.203 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 10/09/21 20:50:18.218 configure_root INFO ] Root configuration changed, new geometry: 1920x1080
+[ 10/09/21 20:50:18.227 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 10/09/21 20:50:18.227 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 10/09/21 20:50:18.228 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 01:32:10.858 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 01:32:10.905 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 01:32:10.906 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 01:32:10.909 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 01:32:10.915 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 01:32:10.930 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 01:32:10.930 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 01:32:10.930 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 01:32:10.934 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 01:32:10.950 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 01:32:10.950 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 01:32:10.951 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 02:14:16.324 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 02:14:17.248 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 02:14:17.248 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 02:14:17.249 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 02:14:17.255 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 02:14:17.264 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 02:14:17.264 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 02:14:17.265 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 02:14:17.270 configure_root INFO ] Root configuration changed, new geometry: 1920x1080
+[ 11/09/21 02:14:17.281 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 02:14:17.282 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 02:14:17.282 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 02:14:17.285 configure_root INFO ] Root configuration changed, new geometry: 1920x1080
+[ 11/09/21 02:14:17.294 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 02:14:17.294 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 02:14:17.295 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 12:49:52.751 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 12:49:52.788 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 12:49:52.788 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 12:49:52.790 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 12:49:52.797 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 12:49:52.816 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 12:49:52.816 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 12:49:52.817 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 12:49:52.821 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 12:49:52.832 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 12:49:52.832 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 12:49:52.832 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 13:56:14.439 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 13:56:14.455 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 13:56:14.455 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 13:56:14.456 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 13:56:14.459 configure_root INFO ] Root configuration changed, new geometry: 1920x2160
+[ 11/09/21 13:56:14.466 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 13:56:14.466 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 13:56:14.467 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 13:56:14.469 configure_root INFO ] Root configuration changed, new geometry: 1920x1080
+[ 11/09/21 13:56:14.481 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 13:56:14.481 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 13:56:14.481 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+[ 11/09/21 13:56:14.484 configure_root INFO ] Root configuration changed, new geometry: 1920x1080
+[ 11/09/21 13:56:14.491 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 11/09/21 13:56:14.491 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 11/09/21 13:56:14.492 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 3294793 requests (3294706 known processed) with 0 events remaining.

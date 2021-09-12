@@ -60,10 +60,12 @@ install xmonad
 install xmonad-contrib
 install xmobar
 install nitrogen
-install trayer
 install nm-applet
 install playerctl
 install i3lock
+install libreoffice-fresh
+install libreoffice-fresh-he
+aur-install zoom
 aur-install notion-app-enhanced
 aur-install clickup
 aur-install timeshift

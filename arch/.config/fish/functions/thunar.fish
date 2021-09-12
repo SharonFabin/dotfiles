@@ -1,3 +1,1 @@
-function thunar
-	devour thunar
-end
+alias thunar="devour thunar"
