@@ -156,3 +156,17 @@ XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
 [ 15/09/21 18:47:10.514 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
 [ 15/09/21 18:47:10.514 glx_has_extension INFO ] Found GLX extension GLX_MESA_query_renderer.
 [ 15/09/21 18:47:10.534 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 15/09/21 20:06:25.240 parse_kawase_blur_strength INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000, .expand = 20]
+[ 15/09/21 20:06:25.242 wid_set_text_prop ERROR ] Failed to make text property: vgit-a8445.
+[ 15/09/21 20:06:25.242 register_cm ERROR ] Failed to set COMPTON_VERSION.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_SGI_video_sync.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_SGI_swap_control.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_OML_sync_control.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_MESA_swap_control.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_EXT_swap_control.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_EXT_texture_from_pixmap.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context.
+[ 15/09/21 20:06:25.286 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
+[ 15/09/21 20:06:25.298 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 15/09/21 20:06:25.298 generate_dual_kawase_params INFO ] blur-strength: 4 [.iter = 2, .offset = 3.000000]
+[ 15/09/21 20:06:25.299 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'opacity'. This is normal when using custom shaders.
