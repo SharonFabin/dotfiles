@@ -35,6 +35,7 @@ import qualified DBus.Client as D
 rofi_launcher = "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\""
 
 -- EWMH full screen support
+
 addNETSupported :: Atom -> X ()
 addNETSupported x   = withDisplay $ \dpy -> do
     r               <- asks theRoot
@@ -50,6 +51,7 @@ addEWMHFullscreen   = do
     wms <- getAtom "_NET_WM_STATE"
     wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
     mapM_ addNETSupported [wms, wfs]
+
 
 -- Workspaces
 terminal_workspace = "\xf66b "
@@ -114,11 +116,11 @@ myManageHook = composeAll . concat $
     doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
     centerFloats = ["Arandr", "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "vlc"]
     floats = ["Downloads", "Save As..."]
-    resourceFloats = []
+    resourceFloats = ["Toolkit"]
     ignores = ["desktop_window"]
     webShifts = ["Chromium", "Google-chrome", "firefox"]
     devShifts = ["Code"]
-    readingShifts = ["qpdfview"]
+    readingShifts = ["qpdfview, Xreader"]
     chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211"]
     tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
     musicShifts = ["Spotify"]
