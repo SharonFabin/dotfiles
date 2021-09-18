@@ -1,6 +1,7 @@
 set clipboard=unnamedplus
 set number relativenumber
 set paste
+set ignorecase
 filetype plugin indent on
 
 :augroup numbertoggle

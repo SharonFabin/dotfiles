@@ -28,5 +28,7 @@ echo "3. If you have bluetooth problems (particulary A2DP profile problem), down
 echo "4. vim color scheme - can be found in ~/dotfiles/arch/vim/, need to put in ~/.vim/pack/vendor/start/vim-code-dark"
 echo "5. font fallback - hebrew - can be found in dotfiles in fonts folder and needs to be updated at /etc/fonts/conf.d/65-nonlatin.conf"
 echo "6. setup cron jobs from ~/dotfiles/arch/cron/ to ~/var/spool/cron/"
+echo "7. setup sddm login background - background are kept in /usr/share/sddm/themes/sugar-candy/Backgrounds and the background config can be found at /usr/share/sddm/themes/sugar-candy/theme.conf"
+echo "8. setup backgrounds - remember when setting up using nitrogen to use (--head=0) to setup background for first monitor or (--head=n) for the n'th monitor"
 
 figlet "Welcome" | lolcat && figlet "Back $USER" | lolcat

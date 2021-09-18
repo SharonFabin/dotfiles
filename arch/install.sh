@@ -86,7 +86,7 @@ install firefox
 aur-install google-chrome
 aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin
-aur-install chili-sddm-theme
+aur-install sddm-sugar-candy-git
 aur-install downgrade
 
 # Utils
