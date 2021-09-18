@@ -51,6 +51,7 @@ install nmap
 install tmux
 install fish
 install rofi
+install vi
 install gvim # vim with extra features
 install docker
 install alacritty
@@ -61,7 +62,9 @@ install xmonad-contrib
 install xmobar
 install nitrogen
 install nm-applet
+install nm-connection-editor
 install playerctl
+install pavucontrol
 install i3lock
 install libreoffice-fresh
 install libreoffice-fresh-he
@@ -89,6 +92,7 @@ aur-install downgrade
 # Utils
 aur-install xdo-git
 aur-install devour
+install cronie
 install gvfs
 install archlinux-keyring
 install gnome-keyring

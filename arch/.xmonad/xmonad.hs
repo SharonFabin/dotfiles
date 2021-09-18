@@ -132,7 +132,7 @@ myStartupHook = do
 	spawnOnce "lxpolkit &"
         spawnOnce "nm-applet &"
         spawnOnce "nitrogen --restore &"
-        spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/lock2.sh' &"
+        spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/lock.sh' &"
 	spawnOnce "~/dotfiles/arch/scripts/set-keyboard-layout-us.sh"
 	setWMName "LG3D"
 
@@ -172,7 +172,7 @@ main = do
         , manageHook = myManageHook <+> manageHook defaultConfig
         } `additionalKeys`
         [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-        , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock2.sh")
+        , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock.sh")
         , ((mod4Mask , xK_p), spawn rofi_launcher)
         , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")
         , ((0, xK_Print), spawn "maim ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")

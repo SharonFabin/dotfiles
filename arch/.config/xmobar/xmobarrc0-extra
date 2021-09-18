@@ -3,6 +3,7 @@ Config { font = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
        , fgColor = "white"
        , position = Top
        , commands = [ Run Cpu ["-L","3","-H","50", "-t", "<fc=#eb4034> </fc><total>%"] 10
+		    , Run Com "/home/sharon/dotfiles/arch/scripts/xmobar-wifi.sh" [] "wifi" 10
 		    , Run Memory ["-t", "<fc=#eb4034> </fc><usedratio>%"] 10
  		    , Run MultiCoreTemp ["-t", "<fc=#eb4034> </fc><avg>°"] 50
                     , Run Volume "default" "Master" ["-t", "<status><volume>%", "--",  "-O", "<fc=#eb4034>墳 </fc>", "-o", "<fc=#eb4034>婢 </fc>"] 10
@@ -20,5 +21,5 @@ Config { font = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %UnsafeStdinReader% } <fc=#eb4034> </fc> %song%{ <action=`nm-connection-editor`></action> <action=`alacritty -e htop`>%cpu% %memory%</action> %multicoretemp% %battery% <action=`pavucontrol`>%default:Master%</action> <fc=#eb4034> </fc>%date%"
+       , template = " %UnsafeStdinReader% } <fc=#eb4034> </fc> %song%{ <action=`nm-connection-editor`></action> <action=`alacritty -e htop`>%cpu% %memory%</action> %multicoretemp% %battery% <action=`pavucontrol`>%default:Master%</action> <fc=#eb4034>%wifi% </fc> <fc=#eb4034> </fc>%date%"
        }

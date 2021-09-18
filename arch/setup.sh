@@ -26,6 +26,7 @@ echo "1. Read-only configs (configs are found in $HOME/dotfiles/arch/readonly-co
 echo "2. gtk theme with lxappearance"
 echo "3. If you have bluetooth problems (particulary A2DP profile problem), downgrade bluez to 1.58 with pamac install downgrade"
 echo "4. vim color scheme - can be found in ~/dotfiles/arch/vim/, need to put in ~/.vim/pack/vendor/start/vim-code-dark"
-echo "5. font fallback - hebrew - can found in dotfiles in fonts folder and needs to be updated at /etc/fonts/conf.d/65-nonlatin.conf
+echo "5. font fallback - hebrew - can be found in dotfiles in fonts folder and needs to be updated at /etc/fonts/conf.d/65-nonlatin.conf"
+echo "6. setup cron jobs from ~/dotfiles/arch/cron/ to ~/var/spool/cron/"
 
 figlet "Welcome" | lolcat && figlet "Back $USER" | lolcat

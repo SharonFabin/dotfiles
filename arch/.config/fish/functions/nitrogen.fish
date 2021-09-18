@@ -1,0 +1,1 @@
+alias nitrogen="devour nitrogen"

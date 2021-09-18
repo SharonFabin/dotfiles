@@ -1,13 +1,39 @@
 #!/bin/bash
 
 revert() {
-  rm /tmp/*screen*.png
-  xset dpms 0 0 0
+	  rm /tmp/*screen*.png
+	  xset dpms 0 0 0
 }
 
-trap revert HUP INT TERM
-scrot /tmp/locking_screen.png --silent
-convert -blur 0x8 /tmp/locking_screen.png /tmp/screen_blur.png
-convert -composite /tmp/screen_blur.png ~/Pictures/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 /tmp/screen.png
-i3lock -i /tmp/screen.png
+LOCK_VERSIONS=1 # How many lock variations to allow?
+
+lock1(){
+	trap revert HUP INT TERM
+	maim /tmp/locking_screen.png
+	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
+	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 /tmp/screen.png
+	i3lock -u -i /tmp/screen.png
+}
+
+lock2() {
+	trap revert HUP INT TERM
+	maim /tmp/locking_screen.png
+	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
+	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/jack1.png -gravity Center -geometry -20x1200 /tmp/screen.png
+	i3lock -u -i /tmp/screen.png
+}
+
+lock3(){
+	trap revert HUP INT TERM
+	maim /tmp/locking_screen.png
+	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
+	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/bobsponge1.png -gravity Center -geometry -20x1200 /tmp/screen.png
+	i3lock -u -i /tmp/screen.png
+}
+
+VERSION=$((1 + $RANDOM % $LOCK_VERSIONS))
+SELECTED_LOCK_FUNCTION="lock$VERSION"
+$SELECTED_LOCK_FUNCTION
+
 revert
+
