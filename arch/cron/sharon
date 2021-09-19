@@ -1,1 +1,2 @@
 0 */6 * * * (export DISPLAY=:0.0 && /bin/date && /bin/nitrogen --set-auto --random ~/Pictures/wallpapers/slide_show/ --head=0 --save) > /tmp/myNitrogen.log 2>&1
+0 */6 * * * (/bin/updatedb) > /tmp/plocateDB.log 2>&1
