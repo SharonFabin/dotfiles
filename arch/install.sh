@@ -83,6 +83,7 @@ install xautolock
 install xorg
 install vlc
 install firefox
+install gufw
 aur-install google-chrome
 aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin
