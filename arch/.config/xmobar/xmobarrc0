@@ -1,24 +1,25 @@
 Config { font = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
-       , bgColor = "#000000"
-       , fgColor = "white"
-       , position = Top
-       , commands = [ Run Cpu ["-L","3","-H","50", "-t", "<fc=#eb4034> </fc><total>%"] 10
-		    , Run Memory ["-t", "<fc=#eb4034> </fc><usedratio>%"] 10
- 		    , Run MultiCoreTemp ["-t", "<fc=#eb4034> </fc><avg>°"] 50
-                    , Run Volume "default" "Master" ["-t", "<status><volume>%", "--",  "-O", "<fc=#eb4034>墳 </fc>", "-o", "<fc=#eb4034>婢 </fc>"] 10
-                    , Run Com "sh" ["-c", "playerctl --player spotify metadata title | cut -c -30"] "song" 10
-                    , Run Date "%d/%m/%y %H:%M " "date" 10
-                    , Run UnsafeStdinReader
+        , bgColor = "#000000"
+        , fgColor = "white"
+        , position = Top
+        , commands = [ 
+          Run Cpu ["-L","3","-H","50", "-t", "<fc=#eb4034> </fc><total>%"] 10
+        , Run Memory ["-t", "<fc=#eb4034> </fc><usedratio>%"] 10
+        , Run MultiCoreTemp ["-t", "<fc=#eb4034> </fc><avg>°"] 50
+        , Run Volume "default" "Master" ["-t", "<status><volume>%", "--",  "-O", "<fc=#eb4034>墳 </fc>", "-o", "<fc=#eb4034>婢 </fc>"] 10
+        , Run Com "sh" ["-c", "playerctl --player spotify metadata title | cut -c -30"] "song" 10
+        , Run Date "%d/%m/%y %H:%M " "date" 10
+        , Run UnsafeStdinReader
 		    , Run Battery [
-			"-t", "<acstatus> <left>%",
-			"--",
-			"-O", "<fc=#eb4034></fc>",
-			"-o", "<fc=#eb4034></fc>",
-			"-h", "green",
-			"-l", "red"
-			] 10
-                    ]
-       , sepChar = "%"
-       , alignSep = "}{"
-       , template = " %UnsafeStdinReader% } <fc=#eb4034> </fc> %song%{ <action=`nm-connection-editor`></action> <action=`alacritty -e htop`>%cpu% %memory%</action> %multicoretemp% %battery% <action=`pavucontrol`>%default:Master%</action> <fc=#eb4034> </fc>%date%"
+            "-t", "<acstatus> <left>%",
+            "--",
+            "-O", "<fc=#eb4034></fc>",
+            "-o", "<fc=#eb4034></fc>",
+            "-h", "green",
+            "-l", "red"
+          ] 10
+        ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = " %UnsafeStdinReader% } <fc=#eb4034> </fc> %song%{ <action=`nm-connection-editor`></action> <action=`alacritty -e htop`>%cpu% %memory%</action> %multicoretemp% %battery% <action=`pavucontrol`>%default:Master%</action> <fc=#eb4034> </fc>%date%"
        }
