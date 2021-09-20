@@ -13,9 +13,20 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/arch/fonts ~/.local/share/fonts
 fc-cache -fv
 
+# Bash
 rm ~/.bash_profile
 ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 
+# SpaceVim
+ln ~/dotfiles/arch/SpaceVim/autoload ~/.SpaceVim.d/autoload
+
+rm ~/.SpaceVim.d/init.toml
+ln ~/dotfiles/arch/SpaceVim/init.toml ~/.SpaceVim.d/init.toml
+
+rm ~/.vim/vimrc
+ln ~/dotfiles/arch/SpaceVim/vimrc ~/.vim/vimrc
+
+# XMonad
 mkdir ~/.xmonad
 ln -s ~/dotfiles/arch/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 

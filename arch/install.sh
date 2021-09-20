@@ -93,6 +93,7 @@ aur-install downgrade
 # Utils
 aur-install xdo-git
 aur-install devour
+install plocate
 install cronie
 install gvfs
 install archlinux-keyring
@@ -134,6 +135,9 @@ cd blurredfox
 install.sh
 cd ..
 rm -rf blurredfox
+
+# SpaceVim
+curl -sLf https://spacevim.org/install.sh | bash
 
 # Fun stuff
 install figlet
