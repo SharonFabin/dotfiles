@@ -121,7 +121,7 @@ myManageHook = composeAll . concat $
     webShifts = ["Chromium", "Google-chrome", "firefox"]
     devShifts = ["Code"]
     readingShifts = ["qpdfview, Xreader"]
-    chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211"]
+    chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211", "zoom"]
     tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
     musicShifts = ["Spotify"]
 
@@ -132,8 +132,8 @@ myStartupHook = do
 	spawnOnce "lxpolkit &"
         spawnOnce "nm-applet &"
         spawnOnce "nitrogen --restore &"
-        spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/lock.sh' &"
-	spawnOnce "~/dotfiles/arch/scripts/set-keyboard-layout-us.sh"
+        spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/bin/lock' &"
+	spawnOnce "~/dotfiles/arch/scripts/bin/set-keyboard-layout-us &"
 	setWMName "LG3D"
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -153,28 +153,27 @@ main = do
         { handleEventHook    = fullscreenEventHook
         , layoutHook = avoidStruts $ smartBorders $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ windowNavigation $ mySpacing 8 $ myLayout
         , logHook = dynamicLogWithPP xmobarPP
-                        --{ ppOutput = hPutStrLn xmproc
-			
-			{ ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
-				        >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
-                        , ppTitle = (\str -> "")
-                        , ppCurrent = xmobarColor "#eb4034" "" . wrap "" ""
-                        , ppSep = " | "
-                        , ppOrder  = \(ws:l:t:_)   -> [ws]
-                        }
-	, terminal = "alacritty"
-        , modMask = mod4Mask     -- Rebind Mod to the Windows key
-	, startupHook = myStartupHook >> addEWMHFullscreen
-        , workspaces = myWorkspaces
-        , borderWidth = myBorderWidth
-        , focusedBorderColor = myFocusedBorderColor
-        , normalBorderColor = myNormalBorderColor
-        , manageHook = myManageHook <+> manageHook defaultConfig
+                -- ppOutput = hPutStrLn xmproc
+                { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
+                                >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
+                , ppTitle = (\str -> "")
+                , ppCurrent = xmobarColor "#eb4034" "" . wrap "" ""
+                , ppSep = " | "
+                , ppOrder  = \(ws:l:t:_)   -> [ws]
+                }
+                , terminal = "alacritty"
+                , modMask = mod4Mask     -- Rebind Mod to the Windows key
+                , startupHook = myStartupHook >> addEWMHFullscreen
+                , workspaces = myWorkspaces
+                , borderWidth = myBorderWidth
+                , focusedBorderColor = myFocusedBorderColor
+                , normalBorderColor = myNormalBorderColor
+                , manageHook = myManageHook <+> manageHook defaultConfig
         } `additionalKeys`
         [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-        , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/lock.sh")
+        , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/bin/lock")
         , ((mod4Mask , xK_p), spawn rofi_launcher)
-        , ((controlMask, xK_Print), spawn "sleep 0.2; maim -s ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")
+        , ((controlMask, xK_Print), spawn "sleep 0.2; shutter -s -e -n -o ~/Pictures/screenshots/%d-%m-%Y-%T.jpg && notify-send 'Screen Captured'")
         , ((0, xK_Print), spawn "maim ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")
 	, ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
@@ -184,13 +183,14 @@ main = do
         , ((mod4Mask, xK_F3), spawn "playerctl --player spotify next")
 	, ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%")
 	, ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%")
-	, ((mod1Mask, xK_space), spawn "$HOME/dotfiles/arch/scripts/layout_switch.sh")
+	, ((mod1Mask, xK_space), spawn "$HOME/dotfiles/arch/scripts/bin/layout_switch")
+	, ((mod1Mask, xK_q), spawn "$HOME/dotfiles/arch/scripts/bin/refresh_displays")
 	, ((mod4Mask, xK_f), sendMessage $ Toggle FULL)
 	, ((mod4Mask, xK_l), windowGo R False)
 	, ((mod4Mask, xK_h), sendMessage $ Go L)
-   	, ((mod4Mask, xK_k), windows W.focusUp)
-   	, ((mod4Mask, xK_j), windows W.focusDown)
-   	, ((mod4Mask , xK_Tab), toggleWS)
+        , ((mod4Mask, xK_k), windows W.focusUp)
+        , ((mod4Mask, xK_j), windows W.focusDown)
+        , ((mod4Mask , xK_Tab), toggleWS)
 	, ((mod4Mask .|. shiftMask, xK_h), sendMessage Shrink)
 	, ((mod4Mask .|. shiftMask, xK_l), sendMessage Expand)
 	, ((mod4Mask .|. shiftMask, xK_j), sendMessage MirrorShrink)

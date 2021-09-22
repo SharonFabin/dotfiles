@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xmodmap $HOME/dotfiles/arch/scripts/helpers/hjkl.xmodmap
+xcape -e 'Mode_switch=Escape'

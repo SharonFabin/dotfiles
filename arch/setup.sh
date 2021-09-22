@@ -12,7 +12,6 @@ chmod +x ./setup-pictures.sh
 ./symlink.sh
 ./setup-systemd-services.sh
 ./setup-inputs.sh
-./setup-vim.sh
 ./setup-pictures.sh
 
 # Setup Theme

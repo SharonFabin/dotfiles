@@ -39,6 +39,7 @@
     enable_statusline_mode = false
     bootstrap_before = 'myspacevim#before'
     bootstrap_after = 'myspacevim#after'
+    windows_smartclose = ''
 
 [[custom_plugins]]
     repo = "wojciechkepka/vim-github-dark"

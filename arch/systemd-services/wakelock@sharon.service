@@ -6,7 +6,7 @@ Before=sleep.target suspend.target
 User=%i
 Type=forking
 Environment=DISPLAY=:0
-ExecStart=/home/%i/dotfiles/arch/scripts/lock.sh
+ExecStart=/home/%i/dotfiles/arch/scripts/bin/lock
 
 [Install]
 WantedBy=sleep.target suspend.target

@@ -10,6 +10,7 @@ function! myspacevim#before() abort
     set rnu
     filetype plugin indent on
     nmap 0 ^
+    nnoremap <CR> :noh<CR><CR>
 endfunction
 
 function! myspacevim#after() abort

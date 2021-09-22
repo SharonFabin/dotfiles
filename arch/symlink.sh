@@ -17,6 +17,9 @@ fc-cache -fv
 rm ~/.bash_profile
 ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 
+# Scripts
+ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
+
 # SpaceVim
 ln ~/dotfiles/arch/SpaceVim/autoload ~/.SpaceVim.d/autoload
 

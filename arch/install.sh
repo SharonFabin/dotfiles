@@ -47,6 +47,7 @@ install exfat-utils
 install file
 install git
 install htop
+install btop
 install nmap
 install tmux
 install fish
@@ -57,6 +58,7 @@ install docker
 install alacritty
 install starship
 install maim
+aur-install shutter-git
 install xmonad
 install xmonad-contrib
 install xmobar
