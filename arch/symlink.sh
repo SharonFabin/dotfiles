@@ -21,13 +21,13 @@ ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
 
 # SpaceVim
-ln ~/dotfiles/arch/SpaceVim/autoload ~/.SpaceVim.d/autoload
+ln -s ~/dotfiles/arch/SpaceVim/autoload ~/.SpaceVim.d/autoload
 
 rm ~/.SpaceVim.d/init.toml
-ln ~/dotfiles/arch/SpaceVim/init.toml ~/.SpaceVim.d/init.toml
+ln -s ~/dotfiles/arch/SpaceVim/init.toml ~/.SpaceVim.d/init.toml
 
 rm ~/.vim/vimrc
-ln ~/dotfiles/arch/SpaceVim/vimrc ~/.vim/vimrc
+ln -s ~/dotfiles/arch/SpaceVim/vimrc ~/.vim/vimrc
 
 # XMonad
 mkdir ~/.xmonad

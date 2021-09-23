@@ -134,7 +134,7 @@ aur-install candy-icons-git
 # Firefox Theme
 git clone https://github.com/manilarome/blurredfox.git
 cd blurredfox
-install.sh
+./install.sh
 cd ..
 rm -rf blurredfox
 

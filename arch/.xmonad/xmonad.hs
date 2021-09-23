@@ -158,6 +158,7 @@ main = do
                                 >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
                 , ppTitle = (\str -> "")
                 , ppCurrent = xmobarColor "#eb4034" "" . wrap "" ""
+                , ppVisible = xmobarColor "#fcba03" "" . wrap "" ""
                 , ppSep = " | "
                 , ppOrder  = \(ws:l:t:_)   -> [ws]
                 }
