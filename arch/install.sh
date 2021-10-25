@@ -9,7 +9,7 @@ cd aura
 stack install -- aura
 cd ..
 rm -rf aura
-export $HOME/.local/bin
+export PATH="$HOME/.local/bin:$PATH"
 
 #install snap
 git clone https://aur.archlinux.org/snapd.git
@@ -56,6 +56,7 @@ install vi
 install gvim # vim with extra features
 install docker
 install alacritty
+install lxappearance
 install starship
 install maim
 aur-install shutter-git
@@ -68,9 +69,11 @@ install nm-connection-editor
 install playerctl
 install pavucontrol
 install i3lock
+install xfce4-power-manager
 install libreoffice-fresh
 install libreoffice-fresh-he
 aur-install zoom
+aut-install whatsapp-nativefier
 aur-install notion-app-enhanced
 aur-install clickup
 aur-install timeshift
@@ -86,6 +89,7 @@ install xorg
 install vlc
 install firefox
 install gufw
+install xreader
 aur-install google-chrome
 aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin
@@ -130,16 +134,6 @@ aur-install plymouth-git
 aur-install sweet-gtk-theme-dark
 aur-install sweet-cursor-theme-git
 aur-install candy-icons-git
-
-# Firefox Theme
-git clone https://github.com/manilarome/blurredfox.git
-cd blurredfox
-./install.sh
-cd ..
-rm -rf blurredfox
-
-# SpaceVim
-curl -sLf https://spacevim.org/install.sh | bash
 
 # Fun stuff
 install figlet

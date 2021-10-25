@@ -9,7 +9,6 @@ ln -s ~/dotfiles/arch/.config/rofi ~/.config/rofi
 ln -s ~/dotfiles/arch/.config/dunst ~/.config/dunst
 ln -s ~/dotfiles/arch/.config/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
-ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/arch/fonts ~/.local/share/fonts
 fc-cache -fv
 
@@ -19,15 +18,6 @@ ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 
 # Scripts
 ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
-
-# SpaceVim
-ln -s ~/dotfiles/arch/SpaceVim/autoload ~/.SpaceVim.d/autoload
-
-rm ~/.SpaceVim.d/init.toml
-ln -s ~/dotfiles/arch/SpaceVim/init.toml ~/.SpaceVim.d/init.toml
-
-rm ~/.vim/vimrc
-ln -s ~/dotfiles/arch/SpaceVim/vimrc ~/.vim/vimrc
 
 # XMonad
 mkdir ~/.xmonad

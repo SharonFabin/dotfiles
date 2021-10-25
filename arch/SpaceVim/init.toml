@@ -13,7 +13,7 @@
     # layer
     colorscheme = "ghdark"
     colorscheme_bg = "dark"
-    statusline_color_scheme = "blue"
+    statusline_color_scheme = "spacevim"
     custom_color_palette = [
       ['#282C34', '#98C379', 114, 235],
       ['#ABB2BF', '#3E4452', 236, 144],
