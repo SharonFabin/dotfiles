@@ -90,6 +90,7 @@ install vlc
 install firefox
 install gufw
 install xreader
+aur-install postman-bin
 aur-install google-chrome
 aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin

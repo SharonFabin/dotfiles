@@ -57,11 +57,12 @@ addEWMHFullscreen   = do
 terminal_workspace = "\xf66b "
 web_workspace = "\xfa9e "
 dev_workspace = "\xf121 "
+dev_extra_workspace = "\xf16c "
 reading_workspace = "\xe28b "
 chat_workspace = "\xf868 "
 tasks_workspace = "\xf634 "
 music_workspace = "\xf1bc "
-myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, reading_workspace, chat_workspace, tasks_workspace, "5", "6", music_workspace]
+myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, dev_extra_workspace, reading_workspace, chat_workspace, tasks_workspace, "8", music_workspace]
 
 
 myBorderWidth = 1
@@ -121,7 +122,7 @@ myManageHook = composeAll . concat $
     webShifts = ["Chromium", "Google-chrome", "firefox"]
     devShifts = ["Code"]
     readingShifts = ["qpdfview, Xreader"]
-    chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211", "zoom"]
+    chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211"]
     tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
     musicShifts = ["Spotify"]
 
