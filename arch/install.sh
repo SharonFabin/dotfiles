@@ -54,6 +54,7 @@ install fish
 install rofi
 install vi
 install gvim # vim with extra features
+install xclip
 install docker
 install alacritty
 install lxappearance

@@ -29,7 +29,12 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x100-15+35"
+    #geometry = "3000x100-1500+320"
+    width = 350
+    height = 200
+    notification_limit = 5
+    origin = top-right
+    offset = 10x30
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -41,7 +46,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 0
+    transparency = 10
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -87,7 +92,7 @@
     ### Text ###
 
     #font = Museo Sans 14
-    font = Fontin Sans 12
+    font = Fontin Sans 20 
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -164,7 +169,7 @@
     icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 48
+    max_icon_size = 64 
 
     # Paths to default icons.
     icon_path = /usr/share/icons/candy-icons/apps/scalable:/usr/share/icons/candy-icons/devices/scalable/
@@ -239,7 +244,7 @@
     # * close_all: Close all notifications.
     mouse_left_click = close_current
     mouse_middle_click = do_action
-    mouse_right_click = close_all
+    mouse_right_click = context
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
@@ -265,7 +270,7 @@
     close_all = ctrl+shift+space
 
     # Redisplay last message(s).
-    # On the US keyboard layout "grave" is normally above TAB and left
+    # on the US keyboard layout "grave" is normally above TAB and left
     # of "1". Make sure this key actually exists on your keyboard layout,
     # e.g. check output of 'xmodmap -pke'
     history = ctrl+grave
@@ -280,8 +285,8 @@
     background = "#121212"
     frame_color = "#181A20"
     timeout = 10
+    new_icon = ~/.config/dunst/images/notification.png
     # Icon for notifications with low urgency, uncomment to enable
-    icon = ~/.config/dunst/images/notification.png
 
 [urgency_normal]
     background = "#121212"
@@ -289,7 +294,7 @@
     frame_color = "#181A20"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    icon = ~/.config/dunst/images/notification.png
+    new_icon = ~/.config/dunst/images/notification.png
 
 [urgency_critical]
     background = "#121212"
@@ -297,7 +302,7 @@
     frame_color = "#181A20"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    icon = ~/.config/dunst/images/notification.png
+    new_icon = ~/.config/dunst/images/notification.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
