@@ -7,6 +7,7 @@ ln -s ~/dotfiles/arch/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/arch/.config/picom ~/.config/picom
 ln -s ~/dotfiles/arch/.config/rofi ~/.config/rofi
 ln -s ~/dotfiles/arch/.config/dunst ~/.config/dunst
+ln -s ~/dotfiles/arch/.config/gtk-3.0 ~/.config/gtk-3.0
 ln -s ~/dotfiles/arch/.config/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -s ~/dotfiles/arch/fonts ~/.local/share/fonts
