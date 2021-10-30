@@ -97,6 +97,22 @@ myLayout = tiled ||| tabbed shrinkText myTabTheme
 myModMask = mod1Mask 
 -- controlMask = ctrl key
 
+-- Mouse Bindings
+--myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
+-- 
+--    -- mod-button1, Set the window to floating mode and move by dragging
+--    [ ((modMask, button1), (\w -> focus w >> mouseMoveWindow w))
+-- 
+--    -- mod-button3, Raise the window to the top of the stack
+--    , ((modMask, button3), (\w -> focus w >> windows W.swapMaster))
+-- 
+--    -- mod-button2, Set the window to floating mode and resize by dragging
+--    , ((modMask, button2), (\w -> focus w >> mouseResizeWindow w))
+--    , ((0, button2), (\w -> kill))
+-- 
+--    -- you may also bind events to the mouse scroll wheel (button4 and button5)
+--    ]
+
 
 -- window manipulations
 myManageHook = composeAll . concat $
@@ -171,6 +187,7 @@ main = do
                 , focusedBorderColor = myFocusedBorderColor
                 , normalBorderColor = myNormalBorderColor
                 , manageHook = myManageHook <+> manageHook defaultConfig
+                --,mouseBindings = myMouseBindings
         } `additionalKeys`
         [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/bin/lock")
