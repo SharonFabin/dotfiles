@@ -22,5 +22,5 @@ rm ~/.vim/vimrc
 ln -s ~/dotfiles/arch/SpaceVim/vimrc ~/.vim/vimrc
 
 sudo aura -S --noconfirm gvim
-sudo aura -A whatapp-nativefier
+sudo aura -A whatsapp-nativefier
 sudo aura snap install spotify

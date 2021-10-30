@@ -11,13 +11,6 @@ cd ..
 rm -rf aura
 export PATH="$HOME/.local/bin:$PATH"
 
-#install snap
-git clone https://aur.archlinux.org/snapd.git
-cd snapd
-makepkg -si --noconfirm
-sudo systemctl enable --now snapd.socket
-cd ..
-rm -rf snapd
 
 function install {
   which $1 &> /dev/null
@@ -40,6 +33,9 @@ function aur-install {
     echo "Already installed: ${1}"
   fi
 }
+
+aur-install snapd
+sudo systemctl enable --now snapd.socket
 
 # Basics
 install curl
@@ -96,6 +92,7 @@ aur-install google-chrome
 aur-install picom-jonaburg-git
 aur-install visual-studio-code-bin
 aur-install sddm-sugar-candy-git
+aur-install sddm-config-editor-git
 aur-install downgrade
 
 # Utils

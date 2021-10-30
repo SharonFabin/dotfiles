@@ -25,8 +25,10 @@ echo "3. setup cron jobs from ~/dotfiles/arch/cron/ to ~/var/spool/cron/"
 echo "4. setup sddm theme with sddm-config-editor, setup sddm login background - background are kept in /usr/share/sddm/themes/sugar-candy/Backgrounds and the background config can be found at /usr/share/sddm/themes/sugar-candy/theme.conf"
 echo "5. setup backups with timeshift-gtk"
 echo "6. sound problem - install sof-firmware"
+echo "7. mouse lag problem - add to /etc/default/grub in default parameters: usbcore.autosuspend=0"
+echo "8. setup firewall with gufw"
 
 figlet "Welcome" | lolcat && figlet "Back $USER" | lolcat
 read  -n 1 -p "Please Press any key to reboot, run post-install script after reboot!" mainmenuinput
-sudo systemctl start sddm
+sudo systemctl enable sddm
 reboot
