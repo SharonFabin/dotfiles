@@ -7,10 +7,11 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.Gaps
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.Cursor
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.CycleWS
+import XMonad.Actions.CopyWindow
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.Spacing
 import XMonad.Layout.LayoutModifier
@@ -80,37 +81,25 @@ myTabTheme = def { fontName            = myFont
                  }
 
 
-myLayout = tiled ||| tabbed shrinkText myTabTheme
+mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
+mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
+
+
+defaultLayout = tiled ||| tabbed shrinkText myTabTheme
   where
-    -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
-
-    -- The default number of windows in the master pane
     nmaster = 1
-
-    -- Default proportion of screen occupied by master pane
     ratio   = 1/2
-
-    -- Percent of screen to increment by when resizing panes
     delta   = 3/100
 
-myModMask = mod1Mask 
--- controlMask = ctrl key
+myLayout = avoidStruts $ smartBorders $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ windowNavigation $ mySpacing 8 $ defaultLayout
 
 -- Mouse Bindings
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
- 
-    -- mod-button1, Set the window to floating mode and move by dragging
     [ ((modMask, button1), (\w -> focus w >> mouseMoveWindow w))
- 
-    -- mod-button3, Raise the window to the top of the stack
     , ((modMask, button3), (\w -> focus w >> windows W.swapMaster))
- 
-    -- mod-button2, Set the window to floating mode and resize by dragging
     , ((modMask, button2), (\w -> focus w >> mouseResizeWindow w))
     , ((0, button2), (\w -> kill))
- 
-    -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
 
@@ -142,20 +131,49 @@ myManageHook = composeAll . concat $
     tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
     musicShifts = ["Spotify"]
 
-
+myStartupHook :: X ()
 myStartupHook = do
-	spawn "~/.xmonad/scripts/autostart.sh"
+  spawnOnce "~/.xmonad/scripts/autostart.sh"
   spawnOnce "picom &"
-	spawnOnce "lxpolkit &"
+  spawnOnce "lxpolkit &"
   spawnOnce "nm-applet &"
   spawnOnce "nitrogen --restore &"
-        --spawnOnce "xautolock -time 10 -locker '$HOME/dotfiles/arch/scripts/bin/lock' &"
-	spawnOnce "~/dotfiles/arch/scripts/bin/set-keyboard-layout-us &"
-	setWMName "LG3D"
+  spawnOnce "~/dotfiles/arch/scripts/bin/set-keyboard-layout-us &"
+  setWMName "LG3D"
 
-mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
-mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
-
+myKeys = 
+        [ ("M1-l", spawn "$HOME/dotfiles/arch/scripts/bin/lock")
+        , ("M-p", spawn rofi_launcher)
+        , ("C-<Print>", spawn "sleep 0.2; shutter -s -e -n -o ~/Pictures/screenshots/%d-%m-%Y-%T.jpg && notify-send 'Screen Captured'")
+        , ("<Print>", spawn "maim ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")
+        , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+        , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+        , ("<XF86AudioMute>", spawn "amixer set Master toggle")
+        , ("M-<XF86AudioMute>", spawn "playerctl --player spotify play-pause")
+        , ("M-<XF86AudioLowerVolume>", spawn "playerctl --player spotify previous")
+        , ("M-<XF86AudioRaiseVolume>", spawn "playerctl --player spotify next")
+        , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
+        , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
+        , ("M1-<Space>", spawn "$HOME/dotfiles/arch/scripts/bin/layout_switch")
+        , ("M1-q", spawn "$HOME/dotfiles/arch/scripts/bin/refresh_displays")
+        , ("M-f", sendMessage $ Toggle FULL)
+        , ("M-l", windowGo R False)
+        , ("M-h", sendMessage $ Go L)
+        , ("M-k", windows W.focusUp)
+        , ("M-j", windows W.focusDown)
+        , ("M-<Tab>", toggleWS)
+        , ("M-S-h", sendMessage Shrink)
+        , ("M-S-l", sendMessage Expand)
+        , ("M-S-j", sendMessage MirrorShrink)
+        , ("M-S-k", sendMessage MirrorExpand)
+        , ("M-C-j", windows W.swapDown  )
+        , ("M-C-k", windows W.swapUp    )
+        , ("M-C-<Left>", sendMessage (IncMasterN 1))
+        , ("M-C-<Right>", sendMessage (IncMasterN (-1)))
+        , ("M-a" , windows copyToAll)
+        , ("M-C-a", killAllOtherCopies)
+        , ("M-S-a", kill1)
+        ]
 
 main = do   
     xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc0"
@@ -168,7 +186,7 @@ main = do
         False
         $ docks $ ewmh defaultConfig
         { handleEventHook    = fullscreenEventHook
-        , layoutHook = avoidStruts $ smartBorders $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ windowNavigation $ mySpacing 8 $ myLayout
+        , layoutHook = myLayout
         , logHook = dynamicLogWithPP xmobarPP
                 -- ppOutput = hPutStrLn xmproc
                 { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
@@ -188,35 +206,5 @@ main = do
                 , normalBorderColor = myNormalBorderColor
                 , manageHook = myManageHook <+> manageHook defaultConfig
                 ,mouseBindings = myMouseBindings
-        } `additionalKeys`
-        [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-        , ((mod1Mask , xK_l), spawn "$HOME/dotfiles/arch/scripts/bin/lock")
-        , ((mod4Mask , xK_p), spawn rofi_launcher)
-        , ((controlMask, xK_Print), spawn "sleep 0.2; shutter -s -e -n -o ~/Pictures/screenshots/%d-%m-%Y-%T.jpg && notify-send 'Screen Captured'")
-        , ((0, xK_Print), spawn "maim ~/Pictures/screenshots/$(date +%Y%m%d_%H%M%S).jpg && notify-send 'Screen Captured'")
-	, ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-        , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-        , ((0, xF86XK_AudioMute), spawn "amixer set Master toggle")
-        , ((mod4Mask, xK_F1), spawn "playerctl --player spotify play-pause")
-        , ((mod4Mask, xK_F2), spawn "playerctl --player spotify previous")
-        , ((mod4Mask, xK_F3), spawn "playerctl --player spotify next")
-	, ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%")
-	, ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%")
-	, ((mod1Mask, xK_space), spawn "$HOME/dotfiles/arch/scripts/bin/layout_switch")
-	, ((mod1Mask, xK_q), spawn "$HOME/dotfiles/arch/scripts/bin/refresh_displays")
-	, ((mod4Mask, xK_f), sendMessage $ Toggle FULL)
-	, ((mod4Mask, xK_l), windowGo R False)
-	, ((mod4Mask, xK_h), sendMessage $ Go L)
-        , ((mod4Mask, xK_k), windows W.focusUp)
-        , ((mod4Mask, xK_j), windows W.focusDown)
-        , ((mod4Mask , xK_Tab), toggleWS)
-	, ((mod4Mask .|. shiftMask, xK_h), sendMessage Shrink)
-	, ((mod4Mask .|. shiftMask, xK_l), sendMessage Expand)
-	, ((mod4Mask .|. shiftMask, xK_j), sendMessage MirrorShrink)
-	, ((mod4Mask .|. shiftMask, xK_k), sendMessage MirrorExpand)
-	, ((controlMask .|. mod4Mask, xK_j), windows W.swapDown  )
-	, ((controlMask .|. mod4Mask, xK_k), windows W.swapUp    )
-	, ((controlMask .|. mod4Mask, xK_Left), sendMessage (IncMasterN 1))
-	, ((controlMask .|. mod4Mask, xK_Right), sendMessage (IncMasterN (-1)))
-        ]
+        } `additionalKeysP` myKeys
 
