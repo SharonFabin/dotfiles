@@ -1,5 +1,5 @@
-map("gT", "E");
-map("gt", "R");
+map("H", "E");
+map("L", "R");
 map("<Ctrl-o>", "S");
 // map("<Ctrl-i>", "D");
 map("<Ctrl-u>", "e");
@@ -13,16 +13,14 @@ map("F","af")
 //         window.open(link.getAttribute('href'));
 //     })
 // });
-Hints.characters = "asdfgwertvbn";
+Hints.characters = "asdfgqwertvbn";
 Hints.style('border: solid 1px #ff79c6; color:#44475a; background: #f1fa8c; background-color: #f1fa8c; font-size: 10pt; font-family: "Fira Code"');
-//Hints.style('border: solid 8px #ff79c6;padding: 1px;background: #f1fa8c; font-family: "Fira Code"', "text");
-Hints.style('border: solid 1px #00000000;color: #50fa7b;background: #ff0000;background-color: #000000e8;font-size: 10pt; font-family: "Fira Code"');
-Hints.style('border: solid 1px #00000000;color: #50fa7b;background: #ff0000;background-color: #000000e8;font-size: 10pt; font-family: "Fira Code"', "text");
+Hints.style('border: solid 8px #ff79c6;padding: 1px;background: #f1fa8c; font-family: "Fira Code"', "text");
 // -----------------------------------------------------------------------------------------------------------------------
 // Change search marks and cursor
 // -----------------------------------------------------------------------------------------------------------------------
 Visual.style('marks', 'background-color: #f1fa8c;');
-Visual.style('cursor', 'background-color: #6272a4; color: #f8f8f2; width: 2px');
+Visual.style('cursor', 'background-color: #6272a4; color: #f8f8f2');
 // -----------------------------------------------------------------------------------------------------------------------
 // Change theme
 // // Change fonts
@@ -65,7 +63,7 @@ kbd {
    
 }
 .sk_theme {
-    background: #000000e8;
+    background: #282a36;
     color: #f8f8f2;
 }
 .sk_theme tbody {
@@ -75,16 +73,16 @@ kbd {
     color: #ffb86c;
 }
 .sk_theme .url {
-    color: #50fa7b;
+    color: #6272a4;
 }
 #sk_omnibarSearchResult>ul>li {
-    background: inherit;
+    background: #282a36;
 }
 #sk_omnibarSearchResult ul li:nth-child(odd) {
-    background: inherit;
+    background: #282a36;
 }
 .sk_theme #sk_omnibarSearchResult ul li:nth-child(odd) {
-    background: inherit;
+    background: #282a36;
 }
 .sk_theme .annotation {
     color: #6272a4;
@@ -192,43 +190,6 @@ div.sk_arrow[dir=up]>div:nth-of-type(2) {
 // }
 .sk_theme .separator {
     color: #ffffff;
-}
-#sk_editor{
-    border-radius: 5px;
-    background-color: transparent !important;
-}
-.ace-chrome .ace_print-margin{
-    background-color: transparent;
-}
-div.ace_content{
-    font-family: 'Fira Code';
-    background-color: #000000e8;
-    color: white;
-}
-div.ace_editor{
-    font: 16px 'Fira Code';
-}
-.ace-chrome .ace_cursor{
-    color: white;
-}
-.ace-chrome .ace_gutter{
-    background: transparent;
-}
-div.ace_gutter{
-    background-color: #000000e8;
-}
-.ace-chrome .ace_gutter-active-line{
-    background-color: transparent;
-    color: wheat;
-}
-.ace_gutter-cell{
-    color: white;
-}
-.ace_gutter-layer{
-    background-color: #000000e8;
-}
-.ace_dialog{
-    color: white;
 }
 }`;
 // -----------------------------------------------------------------------------------------------------------------------
