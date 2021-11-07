@@ -37,8 +37,7 @@ function aur-install {
 aur-install snapd &&
 sudo systemctl enable --now snapd.socket
 
-# Basics
-pacman_install="curl exfat-utils file git htop btop nmap tmux fish rofi vi gvim xclip docker alacritty lxappearance starship maim xmonad xmonad-contrib xmobar nitrogen networkmanager nm-connection-editor playerctl pavucontrol i3lock xfce4-power-manager libreoffice-fresh libreoffice-fresh-he imagemagick thunar thunar-volman wireshark-qt dunst xautolock xorg vlc firefox gufw xreader plocate cronie gvfs archlinux-keyring gnome-keyring polkit lxsession-gtk3 xcape autorandr alsa pulseaudio pulseaudio-alsa pulseaudio-bluetooth bluez bluez-utils blueman gimp fontconfig noto-fonts-emoji ttf-fira-code papirus-icon-theme figlet lolcat neofetch"
+pacman_install="curl exfat-utils file git htop btop nmap tmux fish rofi vi gvim xclip docker alacritty lxappearance starship maim xmonad xmonad-contrib xmobar nitrogen networkmanager nm-connection-editor playerctl pavucontrol i3lock xfce4-power-manager libreoffice-fresh libreoffice-fresh-he imagemagick thunar thunar-volman wireshark-qt dunst xautolock xorg vlc firefox gufw xreader plocate cronie gvfs archlinux-keyring gnome-keyring polkit lxsession-gtk3 xcape autorandr alsa pulseaudio pulseaudio-alsa pulseaudio-bluetooth bluez bluez-utils blueman gimp fontconfig noto-fonts-emoji ttf-fira-code papirus-icon-theme figlet lolcat neofetch transmission-gtk"
 
 aur_install="zoom whatsapp-nativefier notion-app-enhanced clickup timeshift thunar-archive-plugin-git file-roller-git postman-bin google-chrome picom-jonaburg-git visual-studio-code-bin sddm-sugar-candy-git sddm-config-editor-git downgrade xdo-git devour lux nerd-fonts-dejavu-complete nerd-fonts-terminus ttf-exljbris plymouth-git sweet-gtk-theme-dark sweet-cursor-theme-git candy-icons-git shutter-git"
 

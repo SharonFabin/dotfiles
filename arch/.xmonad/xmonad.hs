@@ -9,6 +9,7 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.Cursor
+import XMonad.Util.NamedScratchpad
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.CycleWS
 import XMonad.Actions.CopyWindow
@@ -65,6 +66,21 @@ tasks_workspace = "\xf634 "
 music_workspace = "\xf1bc "
 myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, dev_extra_workspace, reading_workspace, chat_workspace, tasks_workspace, "8", music_workspace]
 
+myTerminal :: String
+myTerminal = "alacritty" 
+
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
+                ]
+  where
+    spawnTerm  = "spotify"
+    findTerm   = className =? "spotify"
+    manageTerm = defaultFloating--customFloating $ W.RationalRect l t w h
+               --where
+               --  h = 0.9
+               --  w = 0.9
+               --  t = 0.95 -h
+               --  l = 0.95 -w
 
 myBorderWidth = 1
 myNormalBorderColor  = "#290000"
@@ -104,7 +120,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 
 -- window manipulations
-myManageHook = composeAll . concat $
+defaultManageHook = composeAll . concat $
     [ [isDialog --> doCenterFloat]
     , [isFullscreen -->  doFullFloat]
     , [className =? c --> doCenterFloat | c <- centerFloats]
@@ -117,7 +133,7 @@ myManageHook = composeAll . concat $
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo chat_workspace | x <- chatShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tasks_workspace | x <- tasksShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo music_workspace | x <- musicShifts]
-    ]
+    ] 
     where
     doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
     centerFloats = ["Arandr", "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "vlc"]
@@ -130,6 +146,9 @@ myManageHook = composeAll . concat $
     chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211"]
     tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
     musicShifts = ["Spotify"]
+
+myManageHook = defaultManageHook <+> namedScratchpadManageHook myScratchPads
+
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -149,9 +168,12 @@ myKeys =
         , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        , ("M-<XF86AudioMute>", spawn "playerctl --player spotify play-pause")
-        , ("M-<XF86AudioLowerVolume>", spawn "playerctl --player spotify previous")
-        , ("M-<XF86AudioRaiseVolume>", spawn "playerctl --player spotify next")
+        --, ("M-<XF86AudioMute>", spawn "playerctl --player spotify play-pause")
+        --, ("M-<XF86AudioLowerVolume>", spawn "playerctl --player spotify previous")
+        --, ("M-<XF86AudioRaiseVolume>", spawn "playerctl --player spotify next")
+        , ("M-<F1>", spawn "playerctl --player spotify play-pause")
+        , ("M-<F2>", spawn "playerctl --player spotify previous")
+        , ("M-<F3>", spawn "playerctl --player spotify next")
         , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
         , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
         , ("M1-<Space>", spawn "$HOME/dotfiles/arch/scripts/bin/layout_switch")
@@ -173,6 +195,7 @@ myKeys =
         , ("M-a" , windows copyToAll)
         , ("M-C-a", killAllOtherCopies)
         , ("M-S-a", kill1)
+        , ("M-t", namedScratchpadAction myScratchPads "terminal")
         ]
 
 main = do   
