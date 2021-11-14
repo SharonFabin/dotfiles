@@ -115,7 +115,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask, button1), (\w -> focus w >> mouseMoveWindow w))
     , ((modMask, button3), (\w -> focus w >> windows W.swapMaster))
     , ((modMask, button2), (\w -> focus w >> mouseResizeWindow w))
-    , ((0, button2), (\w -> kill))
+    --, ((0, button2), (\w -> kill))
     ]
 
 
@@ -129,6 +129,7 @@ defaultManageHook = composeAll . concat $
     , [resource =? i --> doIgnore | i <- ignores]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo web_workspace | x <- webShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo dev_workspace | x <- devShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo dev_extra_workspace | x <- devExtraShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo reading_workspace | x <- readingShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo chat_workspace | x <- chatShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tasks_workspace | x <- tasksShifts]
@@ -142,7 +143,8 @@ defaultManageHook = composeAll . concat $
     ignores = ["desktop_window"]
     webShifts = ["Chromium", "Google-chrome", "firefox"]
     devShifts = ["Code"]
-    readingShifts = ["qpdfview, Xreader"]
+    devExtraShifts = ["Postman"]
+    readingShifts = ["qpdfview, xreader"]
     chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211"]
     tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
     musicShifts = ["Spotify"]
@@ -181,6 +183,7 @@ myKeys =
         , ("M-f", sendMessage $ Toggle FULL)
         , ("M-l", windowGo R False)
         , ("M-h", sendMessage $ Go L)
+        , ("M-m", windows W.focusMaster)
         , ("M-k", windows W.focusUp)
         , ("M-j", windows W.focusDown)
         , ("M-<Tab>", toggleWS)
