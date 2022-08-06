@@ -1,0 +1,3 @@
+pacman -Rs xmonad xmonad-contrib xmobar stack ghc $(pacman -Qq | grep haskell)
+pacman -Syu ghc stack xmonad xmonad-contrib xmobar
+
