@@ -59,3 +59,4 @@ default_height = 30
 
 [[layers]]
 name = "core#statusline"
+name = "sudo"

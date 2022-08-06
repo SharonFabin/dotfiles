@@ -21,8 +21,7 @@ ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
 
 # XMonad
-mkdir ~/.xmonad
-ln -s ~/dotfiles/arch/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+#ln -s ~/dotfiles/arch/.xmonad/xmonad.hs ~/.config/xmonad/xmonad.hs
 
 # Systemd
 sudo ln -s ~/dotfiles/arch/systemd-services/wakelock@sharon.service /etc/systemd/system/wakelock@sharon.service
