@@ -6,7 +6,7 @@ revert() {
     ~/dotfiles/arch/scripts/bin/vim_keyboard_bindings
 }
 
-LOCK_VERSIONS=1 # How many lock variations to allow?
+LOCK_VERSIONS=2 # How many lock variations to allow?
 
 lock1(){
   setxkbmap us -option "altwin:swap_alt_win"
@@ -18,21 +18,31 @@ lock1(){
 	i3lock -u -i /tmp/screen.png
 }
 
-lock2() {
+lock2(){
+  setxkbmap us -option "altwin:swap_alt_win"
+  #~/dotfiles/arch/scripts/bin/vim_keyboard_bindings
 	trap revert HUP INT TERM
 	maim /tmp/locking_screen.png
 	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
-	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/jack1.png -gravity Center -geometry -20x1200 /tmp/screen.png
+	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/nezuko-lock.png -gravity South -geometry -20x1200 /tmp/screen.png
 	i3lock -u -i /tmp/screen.png
 }
 
-lock3(){
-	trap revert HUP INT TERM
-	maim /tmp/locking_screen.png
-	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
-	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/bobsponge1.png -gravity Center -geometry -20x1200 /tmp/screen.png
-	i3lock -u -i /tmp/screen.png
-}
+# lock2() {
+# 	trap revert HUP INT TERM
+# 	maim /tmp/locking_screen.png
+# 	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
+# 	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/jack1.png -gravity Center -geometry -20x1200 /tmp/screen.png
+# 	i3lock -u -i /tmp/screen.png
+# }
+
+# lock3(){
+# 	trap revert HUP INT TERM
+# 	maim /tmp/locking_screen.png
+# 	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
+# 	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/bobsponge1.png -gravity Center -geometry -20x1200 /tmp/screen.png
+# 	i3lock -u -i /tmp/screen.png
+# }
 
 VERSION=$((1 + $RANDOM % $LOCK_VERSIONS))
 SELECTED_LOCK_FUNCTION="lock$VERSION"

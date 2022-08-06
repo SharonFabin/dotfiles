@@ -1,0 +1,21 @@
+{
+  "_mods": {
+    "69e7ccb2-4aef-484c-876d-3de1b433d2b9": true,
+    "5174a483-c88d-4bf8-a95f-35cd330b76e2": true,
+    "e1692c29-475e-437b-b7ff-3eee872e1a42": true,
+    "35815b3b-3916-4dc6-8769-c9c2448f8b57": false,
+    "d61dc8a7-b195-465b-935f-53eea9efe74e": true
+  },
+  "5174a483-c88d-4bf8-a95f-35cd330b76e2": {
+    "tweak.spaced_lines": true
+  },
+  "e1692c29-475e-437b-b7ff-3eee872e1a42": {
+    "last_open_tabs_cache": [
+      {
+        "notionUrl": "notion://www.notion.so/How-to-learn-773c388870514b9f9451e8211ece43ff",
+        "icon": "url(\"notion://www.notion.so/images/emoji/twitter-emoji-spritesheet-64.d3a69865.png\") 49.1525% 25.4237% / 6000% 6000%",
+        "title": "How to learn"
+      }
+    ]
+  }
+}
