@@ -6,7 +6,7 @@ revert() {
     ~/dotfiles/arch/scripts/bin/vim_keyboard_bindings
 }
 
-LOCK_VERSIONS=2 # How many lock variations to allow?
+LOCK_VERSIONS=1 # How many lock variations to allow?
 
 lock1(){
   setxkbmap us -option "altwin:swap_alt_win"
@@ -15,7 +15,9 @@ lock1(){
 	maim /tmp/locking_screen.png
 	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
 	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 /tmp/screen.png
-	i3lock -u -i /tmp/screen.png
+  cvlc ~/Music/sounds/locked.wav vlc://quit &
+	i3lock -n -u -i /tmp/screen.png
+  cvlc ~/Music/sounds/welcome-rick.wav vlc://quit
 }
 
 lock2(){

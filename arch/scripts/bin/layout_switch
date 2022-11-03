@@ -8,6 +8,7 @@ else
 	    case $layout in
 		us)
 			setxkbmap il -option "altwin:swap_alt_win"
+			~/dotfiles/arch/scripts/bin/hebrew_bindings
 			;;
 		*)
 			setxkbmap us -option "altwin:swap_alt_win"
