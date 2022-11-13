@@ -210,9 +210,11 @@ main = do
         [       (mod4Mask,               windowGo  ),
                 (mod4Mask .|. shiftMask, windowSwap)]
         False
-        $ docks $ ewmh defaultConfig
-        { handleEventHook    = fullscreenEventHook
-        , layoutHook = myLayout
+        $ docks $ ewmhFullscreen def
+        { 
+        -- Deprecated eventHook:
+        -- handleEventHook    = fullscreenEventHook,
+        layoutHook = myLayout
         , logHook = dynamicLogWithPP xmobarPP
                 -- ppOutput = hPutStrLn xmproc
                 { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
@@ -230,7 +232,7 @@ main = do
                 , borderWidth = myBorderWidth
                 , focusedBorderColor = myFocusedBorderColor
                 , normalBorderColor = myNormalBorderColor
-                , manageHook = myManageHook <+> manageHook defaultConfig
+                , manageHook = myManageHook <+> manageHook def
                 ,mouseBindings = myMouseBindings
         } `additionalKeysP` myKeys
 
