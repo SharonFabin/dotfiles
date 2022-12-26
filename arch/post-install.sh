@@ -21,6 +21,4 @@ ln -s ~/dotfiles/arch/SpaceVim/init.toml ~/.SpaceVim.d/init.toml
 rm ~/.vim/vimrc
 ln -s ~/dotfiles/arch/SpaceVim/vimrc ~/.vim/vimrc
 
-sudo aura -S --noconfirm gvim
-sudo aura -A whatsapp-nativefier
-sudo aura snap install spotify
+yay -S --noconfirm gvim

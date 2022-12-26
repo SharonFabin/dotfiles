@@ -1,141 +1,73 @@
 #!/bin/bash
 
-sudo pacman -Syu --noconfirm base-devel
+function installGitProgram {
+  which $1 &> /dev/null
 
-#install aura
-sudo pacman -Syu --noconfirm stack
-git clone https://github.com/fosskers/aura.git
-cd aura
-stack install -- aura
-cd ..
-rm -rf aura
-export PATH="$HOME/.local/bin:$PATH"
-
+  if [ $? -ne 0 ]; then
+    echo "installing ${1}..."
+    git clone $2 $1
+    sudo chown -R $USER:$USER ./$1
+    cd $1
+    makepkg -si
+    cd ..
+    rm -rf $1
+  fi
+}
 
 function install {
   which $1 &> /dev/null
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
-    sudo aura -Syu --noconfirm $1
+    yay -S --noconfirm $1
   else
     echo "Already installed: ${1}"
   fi
 }
 
-function aur-install {
+function installPackages {
+  packages=("$@")
+  for package in "${packages[@]}"; do
+	  install $package
+  done
+}
+
+function installSnapPackage {
   which $1 &> /dev/null
 
   if [ $? -ne 0 ]; then
     echo "Installing: ${1}..."
-    sudo aura -A --noconfirm $1
+    snap install $1
   else
     echo "Already installed: ${1}"
   fi
 }
 
-aur-install snapd
-sudo systemctl enable --now snapd.socket
+function installSnapPackages {
+  packages=("$@")
+  for package in "${packages[@]}"; do
+	  installSnapPackage $package
+  done
+}
 
-# Basics
-install curl
-install exfat-utils
-install file
-install git
-install htop
-install btop
-install nmap
-install tmux
-install fish
-install rofi
-install vi
-install gvim # vim with extra features
-install xclip
-install docker
-install alacritty
-install lxappearance
-install starship
-install maim
-aur-install shutter-git
-install xmonad
-install xmonad-contrib
-install xmobar
-install nitrogen
-install networkmanager
-install nm-connection-editor
-install playerctl
-install pavucontrol
-install i3lock
-install xfce4-power-manager
-install libreoffice-fresh
-install libreoffice-fresh-he
-aur-install zoom
-aut-install whatsapp-nativefier
-aur-install notion-app-enhanced
-aur-install clickup
-aur-install timeshift
-install imagemagick
-install thunar
-install thunar-volman
-aur-install thunar-archive-plugin-git
-aur-install file-roller-git
-install wireshark-qt
-install dunst
-install xautolock
-install xorg
-install vlc
-install firefox
-install gufw
-install xreader
-aur-install postman-bin
-aur-install google-chrome
-aur-install picom-jonaburg-git
-aur-install visual-studio-code-bin
-aur-install sddm-sugar-candy-git
-aur-install sddm-config-editor-git
-aur-install downgrade
+basics=("curl" "exfat-utils" "file" "git" "htop" "btop" "nmap" "tmux" "fish" "rofi" "gvim" "xclip" "docker" "alacritty" "lxappearance" "starship" "maim" "shutter-git" "xmonad" "xmonad-contrib" "xmobar" "nitrogen" "networkmanager" "nm-connection-editor" "playerctl" "pavucontrol" "i3lock" "xfce4-power-manager" "libreoffice-fresh" "libreoffice-fresh-he" "zoom" "whatsapp-nativefier" "notion-app-enhanced" "clickup" "timeshift" "imagemagick" "thunar" "thunar-volman" "thunar-archive-plugin-git" "file-roller-git" "wireshark-qt" "dunst" "xautolock" "xorg" "vlc" "firefox" "gufw" "xreader" "postman-bin" "google-chrome" "picom-jonaburg-git" "visual-studio-code-bin" "sddm-sugar-candy-git" "sddm-config-editor-git" "downgrade")
 
-# Utils
-aur-install xdo-git
-aur-install devour
-install plocate
-install cronie
-install gvfs
-install archlinux-keyring
-install gnome-keyring
-install polkit
-install lxsession-gtk3
-install xcape
-install autorandr
-install alsa
-install pulseaudio
-install pulseaudio-alsa
-install pulseaudio-bluetooth
-install bluez
-install bluez-utils
-install blueman
-aur-install lux
+utils=("xdo-git" "devour" "plocate" "cronie" "gvfs" "archlinux-keyring" "gnome-keyring" "polkit" "lxsession-gtk3" "xcape" "autorandr" "alsa" "pulseaudio" "pulseaudio-alsa" "pulseaudio-bluetooth" "bluez" "bluez-utils" "blueman" "lux" "gimp")
 
-# Image processing
-install gimp
+fonts=("fontconfig" "noto-fonts-emoji"  "nerd-fonts-dejavu-complete" "nerd-fonts-terminus" "ttf-exljbris" "ttf-fira-code")
 
-# Fonts
-install fontconfig
-install noto-fonts-emoji
-aur-install nerd-fonts-dejavu-complete
-aur-install nerd-fonts-terminus
-aur-install ttf-exljbris
-install ttf-fira-code
+themes=("papirus-icon-theme" "plymouth-git" "sweet-gtk-theme-dark" "sweet-cursor-theme-git" "candy-icons-git")
 
-# Theme
-install papirus-icon-theme
-aur-install plymouth-git
-aur-install sweet-gtk-theme-dark
-aur-install sweet-cursor-theme-git
-aur-install candy-icons-git
+etc=("figlet" "lolcat" "neofetch")
 
-# Fun stuff
-install figlet
-install lolcat
-install neofetch
+snaps=("spotify")
+
+installGitProgram yay https://aur.archlinux.org/yay-git.git
+installPackages "${basics[@]}"
+installPackages "${utils[@]}"
+installPackages "${fonts[@]}"
+installPackages "${themes[@]}"
+installPackages "${etc[@]}"
+installSnapPackages "${snaps[@]}"
+
 

@@ -1,6 +1,5 @@
 # Config
 
-ln -s ~/dotfiles/arch/.profile ~/.profile
 ln -s ~/dotfiles/arch/.config/fish ~/.config/fish
 ln -s ~/dotfiles/arch/.config/xmobar ~/.config/xmobar
 ln -s ~/dotfiles/arch/.config/xmonad ~/.config/xmonad
@@ -16,8 +15,10 @@ ln -s ~/dotfiles/arch/fonts ~/.local/share/fonts
 fc-cache -fv
 
 # Bash
-rm ~/.bash_profile
+mv ~/.bash_profile ~/.bash_profile_backup
+mv ~/.profile ~/.profile_backup
 ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
+ln -s ~/dotfiles/arch/.profile ~/.profile
 
 # Scripts
 ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
