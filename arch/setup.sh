@@ -21,6 +21,7 @@ sudo mv /usr/share/themes/Sweet-cursors /usr/share/icons/Sweet-cursors
 echo "Things to setup:"
 echo "1. If you have bluetooth problems (particulary A2DP profile problem), downgrade bluez to 1.58 with pamac install downgrade"
 echo "2. font fallback - hebrew - can be found in dotfiles in fonts folder and needs to be updated at /etc/fonts/conf.d/65-nonlatin.conf"
+echo "setup theme and icons with lxappearance"
 echo "3. setup cron jobs from ~/dotfiles/arch/cron/ to ~/var/spool/cron/"
 echo "4. setup sddm theme with sddm-config-editor, setup sddm login background - background are kept in /usr/share/sddm/themes/sugar-candy/Backgrounds and the background config can be found at /usr/share/sddm/themes/sugar-candy/theme.conf"
 echo "5. setup backups with timeshift-gtk"
