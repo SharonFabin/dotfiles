@@ -50,7 +50,7 @@ function installSnapPackages {
   done
 }
 
-basics=("curl" "exfat-utils" "file" "git" "htop" "btop" "nmap" "tmux" "fish" "rofi" "gvim" "xclip" "docker" "alacritty" "lxappearance" "starship" "maim" "shutter-git" "xmonad" "xmonad-contrib" "xmobar" "nitrogen" "networkmanager" "nm-connection-editor" "playerctl" "pavucontrol" "i3lock" "xfce4-power-manager" "libreoffice-fresh" "libreoffice-fresh-he" "zoom" "whatsapp-nativefier" "notion-app-enhanced" "clickup" "timeshift" "imagemagick" "thunar" "thunar-volman" "thunar-archive-plugin-git" "file-roller-git" "wireshark-qt" "dunst" "xautolock" "xorg" "vlc" "firefox" "gufw" "xreader" "postman-bin" "google-chrome" "picom-jonaburg-git" "visual-studio-code-bin" "sddm-sugar-candy-git" "sddm-config-editor-git" "downgrade")
+basics=("curl" "exfat-utils" "file" "git" "htop" "btop" "nmap" "tmux" "fish" "rofi" "gvim" "xclip" "docker" "docker-compose" "alacritty" "lxappearance" "starship" "maim" "shutter-git" "xmonad" "xmonad-contrib" "xmobar" "nitrogen" "networkmanager" "nm-connection-editor" "playerctl" "pavucontrol" "i3lock" "xfce4-power-manager" "libreoffice-fresh" "libreoffice-fresh-he" "zoom" "whatsapp-nativefier" "notion-app-enhanced" "clickup" "timeshift" "imagemagick" "thunar" "thunar-volman" "thunar-archive-plugin-git" "file-roller-git" "wireshark-qt" "dunst" "xautolock" "xorg" "vlc" "firefox" "gufw" "xreader" "postman-bin" "google-chrome" "picom-jonaburg-git" "visual-studio-code-bin" "sddm-sugar-candy-git" "sddm-config-editor-git" "downgrade")
 
 utils=("xdo-git" "devour" "plocate" "cronie" "gvfs" "archlinux-keyring" "gnome-keyring" "polkit" "lxsession-gtk3" "xcape" "autorandr" "alsa" "pulseaudio" "pulseaudio-alsa" "pulseaudio-bluetooth" "bluez" "bluez-utils" "blueman" "lux" "gimp")
 

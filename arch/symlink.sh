@@ -25,3 +25,10 @@ ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
 
 # Systemd
 sudo ln -s ~/dotfiles/arch/systemd-services/wakelock@sharon.service /etc/systemd/system/wakelock@sharon.service
+
+# SDDM Theme
+sudo mv /usr/share/sddm/themes/sugar-candy/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf_backup
+sudo mv /usr/share/sddm/themes/sugar-candy/Backgrounds /usr/share/sddm/themes/sugar-candy/Backgrounds_backup
+sudo ln -s ~/dotfiles/arch/.config/sddm/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
+sudo ln -s ~/dotfiles/arch/.config/sddm/Backgrounds /usr/share/sddm/themes/sugar-candy/Backgrounds
+sudo ln -s ~/dotfiles/arch/.config/sddm.conf.d /etc/sddm.conf.d
