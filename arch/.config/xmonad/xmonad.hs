@@ -146,7 +146,7 @@ defaultManageHook = composeAll . concat $
     devExtraShifts = ["Postman"]
     readingShifts = ["qpdfview, xreader"]
     chatShifts = ["Whatsapp-for-linux", "whatsapp-nativefier-d40211"]
-    tasksShifts = ["ClickUp Desktop", "notion-app-enhanced"]
+    tasksShifts = ["ClickUp Desktop", "notion-app-enhanced", "notion-app"]
     musicShifts = ["Spotify"]
 
 myManageHook = defaultManageHook <+> namedScratchpadManageHook myScratchPads
@@ -178,6 +178,7 @@ myKeys =
         , ("M-<F3>", spawn "playerctl --player spotify next")
         , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
         , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
+        , ("<XF86WLAN>", spawn "$HOME/dotfiles/arch/scripts/bin/reload_wifi")
         , ("M1-<Space>", spawn "$HOME/dotfiles/arch/scripts/bin/layout_switch")
         , ("M1-q", spawn "$HOME/dotfiles/arch/scripts/bin/refresh_displays")
         , ("M-f", sendMessage $ Toggle FULL)
