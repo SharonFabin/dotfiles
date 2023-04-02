@@ -22,6 +22,8 @@ const {
 
 map("gT", "E");
 map("gt", "R");
+map(">", "R");
+map("<", "E");
 map("<Ctrl-o>", "S");
 // map("<Ctrl-i>", "D");
 map("<Ctrl-u>", "e");
