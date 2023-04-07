@@ -1,4 +1,6 @@
 import XMonad
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -13,6 +15,7 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.CycleWS
 import XMonad.Actions.CopyWindow
+import XMonad.Layout.ShowWName
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.Spacing
 import XMonad.Layout.LayoutModifier
@@ -64,28 +67,37 @@ reading_workspace = "\xe28b "
 chat_workspace = "\xf868 "
 tasks_workspace = "\xf634 "
 music_workspace = "\xf1bc "
-myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, dev_extra_workspace, reading_workspace, chat_workspace, tasks_workspace, "8", music_workspace]
+myWorkspaces    = [terminal_workspace, web_workspace, dev_workspace, dev_extra_workspace, reading_workspace, chat_workspace, tasks_workspace, "8", music_workspace, "scratchpad"]
 
 myTerminal :: String
 myTerminal = "alacritty" 
 
+myShowWNameTheme :: SWNConfig
+myShowWNameTheme = def
+  { swn_font              = "xft:Noto Sans Symbols:size=40"
+  , swn_fade              = 1.0
+  , swn_bgcolor           = "#1c1f24"
+  , swn_color             = "#ffffff"
+  }
+
 myScratchPads :: [NamedScratchpad]
-myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
-                ]
-  where
-    spawnTerm  = "spotify"
-    findTerm   = className =? "spotify"
-    manageTerm = defaultFloating--customFloating $ W.RationalRect l t w h
-               --where
-               --  h = 0.9
-               --  w = 0.9
-               --  t = 0.95 -h
-               --  l = 0.95 -w
+myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm ]
+ where
+    spawnTerm  = myTerminal ++ " -t scratchpad"
+    findTerm   = title =? "scratchpad"
+    manageTerm = customFloating $ W.RationalRect l t w h
+               where
+                 h = 0.9
+                 w = 0.9
+                 t = 0.95 -h
+                 l = 0.95 -w
+
 
 myBorderWidth = 1
 myNormalBorderColor  = "#290000"
 myFocusedBorderColor = "#eb4034"
 myFont = "xft:TerminessTTF Nerd Font:size=13:antialias=true:hinting=true"
+xmobarFont = "xft:Hack Nerd Font:size=10:antialias=true:hinting=true"
 
 myTabTheme = def { fontName            = myFont
                  , activeColor         = "#46d9ff"
@@ -141,7 +153,7 @@ defaultManageHook = composeAll . concat $
     floats = ["Downloads", "Save As..."]
     resourceFloats = ["Toolkit"]
     ignores = ["desktop_window"]
-    webShifts = ["firefox"]
+    webShifts = ["firefox", "brave-browser"]
     devShifts = []
     devExtraShifts = ["Postman"]
     readingShifts = ["qpdfview, xreader"]
@@ -187,7 +199,7 @@ myKeys =
         , ("M-m", windows W.focusMaster)
         , ("M-k", windows W.focusUp)
         , ("M-j", windows W.focusDown)
-        , ("M-<Tab>", toggleWS)
+        , ("M-<Tab>", toggleWS' ["NSP"])
         , ("M-S-h", sendMessage Shrink)
         , ("M-S-l", sendMessage Expand)
         , ("M-S-j", sendMessage MirrorShrink)
@@ -199,7 +211,7 @@ myKeys =
         , ("M-a" , windows copyToAll)
         , ("M-C-a", killAllOtherCopies)
         , ("M-S-a", kill1)
-        , ("M-t", namedScratchpadAction myScratchPads "terminal")
+        , ("M-c", namedScratchpadAction myScratchPads "terminal")
         ]
 
 main = do   
@@ -216,7 +228,7 @@ main = do
         -- Deprecated eventHook:
         -- handleEventHook    = fullscreenEventHook,
         layoutHook = myLayout
-        , logHook = dynamicLogWithPP xmobarPP
+        , logHook = dynamicLogWithPP xmobarPP 
                 -- ppOutput = hPutStrLn xmproc
                 { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
                                 >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
@@ -224,6 +236,7 @@ main = do
                 , ppCurrent = xmobarColor "#eb4034" "" . wrap "" ""
                 , ppVisible = xmobarColor "#fcba03" "" . wrap "" ""
                 , ppSep = " | "
+                --, ppExtras = [showWName myShowWNameTheme]
                 , ppOrder  = \(ws:l:t:_)   -> [ws]
                 }
                 , terminal = "alacritty"

@@ -16,7 +16,9 @@ lock1(){
 	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
 	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 /tmp/screen.png
   cvlc ~/Music/sounds/locked.wav vlc://quit &
-	i3lock -n -u -i /tmp/screen.png
+  	betterlockscreen -u /tmp/screen.png --fx
+	betterlockscreen -l
+	#i3lock -n -u -i /tmp/screen.png
   cvlc ~/Music/sounds/welcome-rick.wav vlc://quit
 }
 

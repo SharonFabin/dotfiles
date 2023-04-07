@@ -1,4 +1,4 @@
-Config { font = "xft:TerminessTTF Nerd Font:size=14:antialias=true:hinting=true"
+Config { font = "Hack Nerd Font 13"
         , bgColor = "#000000"
         , fgColor = "white"
         , position = Top
