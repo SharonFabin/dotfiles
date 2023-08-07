@@ -21,6 +21,7 @@ ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 ln -s ~/dotfiles/arch/.profile ~/.profile
 
 # Scripts
+mkdir /home/sharon/.local/bin
 ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
 
 # Systemd

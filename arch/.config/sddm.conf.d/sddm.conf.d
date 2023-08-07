@@ -1,0 +1,1 @@
+/home/sharon/dotfiles/arch/.config/sddm.conf.d
