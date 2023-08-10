@@ -4,6 +4,7 @@ ln -s ~/dotfiles/arch/.config/fish ~/.config/fish
 ln -s ~/dotfiles/arch/.config/xmobar ~/.config/xmobar
 ln -s ~/dotfiles/arch/.config/xmonad ~/.config/xmonad
 ln -s ~/dotfiles/arch/.config/hypr ~/.config/hypr
+ln -s ~/dotfiles/arch/.config/swaylock ~/.config/swaylock
 sudo ln -s ~/dotfiles/arch/.config/keyd/default.conf /etc/keyd/default.conf
 ln -s ~/dotfiles/arch/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/arch/.config/picom ~/.config/picom
