@@ -1,0 +1,13 @@
+#!/bin/bash
+
+layout=$(sudo systemctl status keyd | grep Active | awk '{ print $2 }')
+    case $layout in
+	active)
+		sudo systemctl stop keyd
+		hyprctl switchxkblayout at-translated-set-2-keyboard 1
+		;;
+	failed)
+		sudo systemctl start keyd
+		hyprctl switchxkblayout at-translated-set-2-keyboard 0
+		;;
+	esac

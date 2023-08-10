@@ -3,6 +3,8 @@
 ln -s ~/dotfiles/arch/.config/fish ~/.config/fish
 ln -s ~/dotfiles/arch/.config/xmobar ~/.config/xmobar
 ln -s ~/dotfiles/arch/.config/xmonad ~/.config/xmonad
+ln -s ~/dotfiles/arch/.config/hypr ~/.config/hypr
+sudo ln -s ~/dotfiles/arch/.config/keyd/default.conf /etc/keyd/default.conf
 ln -s ~/dotfiles/arch/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/arch/.config/picom ~/.config/picom
 ln -s ~/dotfiles/arch/.config/rofi ~/.config/rofi
