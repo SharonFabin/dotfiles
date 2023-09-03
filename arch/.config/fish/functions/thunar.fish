@@ -1,1 +1,0 @@
-alias thunar="devour thunar"

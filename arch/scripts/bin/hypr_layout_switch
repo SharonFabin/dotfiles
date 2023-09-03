@@ -1,6 +1,6 @@
 #!/bin/bash
 
-layout=$(sudo systemctl status keyd | grep Active | awk '{ print $2 }')
+layout=$(systemctl status keyd | grep Active | awk '{ print $2 }')
     case $layout in
 	active)
 		sudo systemctl stop keyd

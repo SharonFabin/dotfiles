@@ -1,1 +1,0 @@
-alias sxiv="devour sxiv"

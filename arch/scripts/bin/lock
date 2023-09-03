@@ -10,6 +10,7 @@ lock1(){
 	trap revert HUP INT TERM
 	grim /tmp/lockscreen.png
 	convert -scale 10% -scale 1000% /tmp/lockscreen.png /tmp/screen_blur.png
+	#convert -filter Gaussian -resize 20% -blur 0x2.5 -resize 500% /tmp/lockscreen.png /tmp/screen_blur.png
 	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 /tmp/screen.png
 	# cvlc ~/Music/sounds/locked.wav vlc://quit &
   	# betterlockscreen -u /tmp/screen.png --fx
