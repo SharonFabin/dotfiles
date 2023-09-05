@@ -40,9 +40,9 @@ return {
         },
       })
       -- vim.cmd([[colorscheme github_dark_tritanopia]])
-      vim.cmd([[colorscheme github_dark]])
-      vim.cmd("hi NEOTreeNormal guibg=#040406")
-      vim.cmd("hi NEOTreeNormalNC guibg=#040406")
+      -- vim.cmd([[colorscheme github_dark]])
+      -- vim.cmd("hi NEOTreeNormal guibg=#040406")
+      -- vim.cmd("hi NEOTreeNormalNC guibg=#040406")
     end,
   },
 

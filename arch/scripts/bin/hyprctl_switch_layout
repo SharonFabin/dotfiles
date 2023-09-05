@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# create variable with output of command
+
+function getDevices {
+	input_string=$(hyprctl devices | awk -F ':' '/Keyboard at/ {getline; print $1}' | tr -d "[:blank:]" | tr '\n' ' ')
+
+	IFS=" " read -r -a items <<<"$input_string"
+
+	# Loop through the array and print each item
+	for item in "${items[@]}"; do
+		hyprctl switchxkblayout $item next
+		echo "hyprctl switchxkblayout $item next"
+	done
+}
+
+getDevices

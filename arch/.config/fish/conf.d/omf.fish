@@ -6,4 +6,3 @@
 # Load Oh My Fish configuration.
 #source $OMF_PATH/init.fish
 starship init fish | source
-
