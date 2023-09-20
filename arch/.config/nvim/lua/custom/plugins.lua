@@ -146,8 +146,13 @@ local plugins = {
 				"prochri/telescope-all-recent.nvim",
 				dependencies = { "kkharji/sqlite.lua" },
 			},
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		opts = overrides.telescope,
+		config = function(_, opts)
+			require("telescope").load_extension("fzf")
+			require("telescope").setup(opts)
+		end,
 	},
 	{
 		"RRethy/vim-illuminate",
@@ -212,6 +217,36 @@ local plugins = {
 			create_autocmd = false,
 		},
 	},
-}
+	{
+		"ThePrimeagen/harpoon",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		-- Lazy load when event occurs. Events are triggered
+		-- as mentioned in:
+		-- https://vi.stackexchange.com/a/4495/20389
+		event = "InsertEnter",
+		-- You can also have it load at immediately at
+		-- startup by commenting above and uncommenting below:
+		-- lazy = false
+		opts = overrides.copilot,
+	},
+	-- {
+	-- 	"jonahgoldwastaken/copilot-status.nvim",
+	-- 	dependencies = { "zbirenbaum/copilot.lua" }, -- or "zbirenbaum/copilot.luFa"
+	-- 	lazy = true,
+	-- 	event = "BufReadPost",
+	-- },
+	{
+		"sourcegraph/sg.nvim",
+		event = "VeryLazy",
+		opts = {},
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 
+	-- Need to remove!!
+}
 return plugins

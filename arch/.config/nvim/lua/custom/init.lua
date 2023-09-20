@@ -77,3 +77,13 @@ vim.api.nvim_create_autocmd({
 		require("barbecue.ui").update()
 	end,
 })
+
+-- Add underline to diagnostics
+vim.cmd([[
+hi DiagnosticUnderlineError gui=undercurl
+hi DiagnosticUnderlineWarn gui=undercurl
+set termguicolors
+]])
+
+-- Inlay hints
+vim.lsp.inlay_hint(0, true)

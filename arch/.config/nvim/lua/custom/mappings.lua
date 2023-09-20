@@ -4,12 +4,13 @@ local M = {}
 M.disabled = {
 	n = {
 		["<leader>x"] = "",
+		["<leader>h"] = "",
 	},
 }
 
 M.general = {
 	n = {
-		-- ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "Telescope Files" },
+		-- Telescope
 		["<C-p>"] = {
 			function()
 				require("telescope.builtin").find_files({
@@ -20,7 +21,45 @@ M.general = {
 			"Telescope Files",
 		},
 		["<leader>/"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-		-- ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Nvim Tree" },
+		["gr"] = { "<cmd> Telescope lsp_references <CR>", "LSP References" },
+
+		-- Harpoon
+		["<leader>he"] = {
+			function()
+				require("harpoon.ui").toggle_quick_menu()
+			end,
+			"Harpoon List",
+		},
+		["<leader>ha"] = {
+			function()
+				require("harpoon.mark").add_file()
+			end,
+			"Harpoon Add File",
+		},
+		["<leader>1"] = {
+			function()
+				require("harpoon.ui").nav_file(1)
+			end,
+			"Harpoon File 1",
+		},
+		["<leader>2"] = {
+			function()
+				require("harpoon.ui").nav_file(2)
+			end,
+			"Harpoon File 2",
+		},
+		["<leader>3"] = {
+			function()
+				require("harpoon.ui").nav_file(3)
+			end,
+			"Harpoon File 3",
+		},
+		["<leader>4"] = {
+			function()
+				require("harpoon.ui").nav_file(4)
+			end,
+			"Harpoon File 4",
+		},
 		["<leader>e"] = {
 			function()
 				local api = require("nvim-tree.api")
@@ -28,6 +67,16 @@ M.general = {
 			end,
 			"Toggle Nvim Tree",
 		},
+
+		-- LSP
+		["<leader>uh"] = {
+			function()
+				vim.lsp.inlay_hint(0, nil)
+			end,
+			"Toggle Inlay Hints",
+		},
+
+		-- Functions
 		["<F2>"] = {
 			function()
 				require("nvchad.renamer").open()
@@ -45,13 +94,13 @@ M.nvimtree = {
 
 	n = {
 
-		["<F2>"] = {
-			function()
-				local api = require("nvim-tree.api")
-				api.fs.rename()
-			end,
-			"Rename Nvimtree node",
-		},
+		-- ["<F2>"] = {
+		-- 	function()
+		-- 		local api = require("nvim-tree.api")
+		-- 		api.fs.rename()
+		-- 	end,
+		-- 	"Rename Nvimtree node",
+		-- },
 		-- toggle
 		-- ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
 
