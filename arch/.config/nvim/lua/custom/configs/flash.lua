@@ -2,6 +2,9 @@ local M = {}
 
 M.opts = {
 	modes = {
+		search = {
+			enabled = false,
+		},
 		char = {
 			multi_line = false,
 			highlight = { backdrop = false },

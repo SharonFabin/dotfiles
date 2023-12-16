@@ -10,6 +10,7 @@ local sources = {
 		disabled_filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	}),
 	b.diagnostics.eslint,
+	b.code_actions.eslint,
 	-- b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
 
 	-- Lua
@@ -23,8 +24,20 @@ local sources = {
 	b.diagnostics.ruff,
 	b.diagnostics.mypy,
 
-	-- Code Actions
-	b.code_actions.eslint,
+	-- Extra
+	b.diagnostics.cspell.with({
+
+		diagnostics_postprocess = function(diagnostic)
+			diagnostic.severity = vim.diagnostic.severity.HINT
+		end,
+	}),
+	b.code_actions.cspell.with({
+		config = {
+			find_json = function(cwd)
+				return vim.fn.expand(cwd .. "/cspell.json")
+			end,
+		},
+	}),
 }
 
 null_ls.setup({

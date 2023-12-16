@@ -147,10 +147,12 @@ local plugins = {
 				dependencies = { "kkharji/sqlite.lua" },
 			},
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			"debugloop/telescope-undo.nvim",
 		},
 		opts = overrides.telescope,
 		config = function(_, opts)
 			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("undo")
 			require("telescope").setup(opts)
 		end,
 	},
@@ -240,11 +242,17 @@ local plugins = {
 	-- 	lazy = true,
 	-- 	event = "BufReadPost",
 	-- },
+	-- {
+	-- 	"sourcegraph/sg.nvim",
+	-- 	event = "VeryLazy",
+	-- 	opts = {},
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- },
 	{
-		"sourcegraph/sg.nvim",
-		event = "VeryLazy",
-		opts = {},
-		dependencies = { "nvim-lua/plenary.nvim" },
+		"tpope/vim-fugitive",
+	},
+	{
+		"mbbill/undotree",
 	},
 
 	-- Need to remove!!

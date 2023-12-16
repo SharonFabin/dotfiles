@@ -5,6 +5,7 @@ M.disabled = {
 	n = {
 		["<leader>x"] = "",
 		["<leader>h"] = "",
+		["<leader>fo"] = "",
 	},
 }
 
@@ -22,6 +23,8 @@ M.general = {
 		},
 		["<leader>/"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
 		["gr"] = { "<cmd> Telescope lsp_references <CR>", "LSP References" },
+		["gd"] = { "<cmd> Telescope lsp_definitions <CR>", "LSP Definitions" },
+		["<leader>fr"] = { "<cmd> Telescope oldfiles <CR>", "Recent Files" },
 
 		-- Harpoon
 		["<leader>he"] = {
@@ -69,12 +72,18 @@ M.general = {
 		},
 
 		-- LSP
+
+		-- Undo
+		["<leader>uu"] = { "<cmd> Telescope undo<CR>", "Undo Tree" },
+
+		-- Toggle
 		["<leader>uh"] = {
 			function()
 				vim.lsp.inlay_hint(0, nil)
 			end,
 			"Toggle Inlay Hints",
 		},
+		["<leader>uc"] = { "<cmd> Copilot toggle<CR> ", "Toggle Copilot" },
 
 		-- Functions
 		["<F2>"] = {
@@ -83,6 +92,7 @@ M.general = {
 			end,
 			"LSP rename",
 		},
+		["U"] = { "<cmd>redo<CR>", "redo" },
 	},
 	i = {
 		["<C-s>"] = { "<C-O>:w<CR>", "Save" },

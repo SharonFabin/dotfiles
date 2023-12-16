@@ -1,3 +1,5 @@
+local os = require("os")
+local omnisharp_server_location = os.getenv("OMNISHARP_LANGUAGE_SERVER")
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
@@ -51,6 +53,14 @@ lspconfig.pyright.setup({
 })
 
 lspconfig.tailwindcss.setup({})
+
+lspconfig.omnisharp.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "cs", "csx" },
+	cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
+})
+--austin
 
 vim.diagnostic.config({
 	virtual_text = false,
