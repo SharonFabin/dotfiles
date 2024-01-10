@@ -50,9 +50,9 @@ function installSnapPackages {
 	done
 }
 
-basics=("curl" "exfat-utils" "file" "git" "htop" "btop" "nmap" "tmux" "fish" "rofi" "gvim" "xclip" "docker" "docker-compose" "alacritty" "lxappearance" "starship" "maim" "shutter-git" "xmonad" "xmonad-contrib" "xmobar" "nitrogen" "networkmanager" "nm-connection-editor" "playerctl" "pavucontrol" "i3lock" "xfce4-power-manager" "libreoffice-fresh" "libreoffice-fresh-he" "zoom" "whatsapp-nativefier" "notion-app-enhanced" "timeshift" "imagemagick" "thunar" "thunar-volman" "thunar-archive-plugin-git" "file-roller-git" "wireshark-qt" "dunst" "xautolock" "xorg" "vlc" "firefox" "gufw" "xreader" "postman-bin" "google-chrome" "picom-jonaburg-git" "visual-studio-code-bin" "sddm-sugar-candy-git" "sddm-config-editor-git" "downgrade", "keyd")
+basics=("curl" "exfat-utils" "file" "git" "htop" "btop" "nmap" "tmux" "fish" "rofi" "xclip" "alacritty" "lxappearance" "starship" "networkmanager" "nm-connection-editor" "playerctl" "pavucontrol" "i3lock" "xfce4-power-manager" "libreoffice-fresh" "libreoffice-fresh-he" "zoom" "whatsapp-nativefier" "notion-app-enhanced" "timeshift" "imagemagick" "thunar" "thunar-volman" "thunar-archive-plugin-git" "file-roller-git" "wireshark-qt" "xautolock" "vlc" "firefox" "gufw" "xreader" "postman-bin" "google-chrome" "sddm-sugar-candy-git" "sddm-config-editor-git" "downgrade", "keyd")
 
-utils=("patch pkg-conifg" "xdo-git" "devour" "plocate" "cronie" "gvfs" "archlinux-keyring" "gnome-keyring" "polkit" "lxsession-gtk3" "xcape" "autorandr" "pipewire" "pipewire-pulse" "pipewire-jack" "pipewire-alsa" "pipewire-zeroconf" "wireplumber" "bluez" "bluez-utils" "blueman" "lux" "gimp", "grimblast", "wl-clipboard", "wlsunset")
+utils=("patch pkg-conifg" "xdo-git" "devour" "plocate" "cronie" "gvfs" "archlinux-keyring" "gnome-keyring" "polkit" "lxsession-gtk3" "xcape" "autorandr" "pipewire" "pipewire-pulse" "pipewire-jack" "pipewire-alsa" "pipewire-zeroconf" "wireplumber" "bluez" "bluez-utils" "blueman" "lux" "gimp", "grimblast", "wl-clipboard", "wlsunset", "gnome-bluetooth-3.0")
 
 fonts=("fontconfig" "noto-fonts-emoji" "nerd-fonts-dejavu-complete" "nerd-fonts-terminus" "ttf-exljbris" "ttf-fira-code" "ttf-nerd-fonts-symbols")
 
