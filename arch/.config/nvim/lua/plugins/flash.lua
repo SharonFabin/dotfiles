@@ -11,7 +11,7 @@ return {
         },
         char = {
           enabled = true,
-          jump_labels = true,
+          jump_labels = false,
           multi_line = false,
           highlight = { backdrop = false },
           char_actions = function(motion)

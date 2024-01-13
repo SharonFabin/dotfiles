@@ -4,5 +4,11 @@ return {
     window = {
       width = 30,
     },
+    default_component_configs = {
+      icon = {
+        folder_closed = "",
+        folder_open = "",
+      },
+    },
   },
 }
