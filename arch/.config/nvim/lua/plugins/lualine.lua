@@ -19,6 +19,7 @@ local colors = {
   cattpuccin_grey_fg = "#5b5f71",
   cattpuccin_normal = "aeb7f4",
   cattpuccin_b_bg = "#262a30",
+
   cattpuccin_b_fg = "#c3ccd4",
   cattpuccin_c_fg = "#41a8d8",
   cattpuccin_y_bg = "#e099a4",
@@ -121,9 +122,31 @@ return {
         lualine_x = {
           -- stylua: ignore
           {
-            function() return require("noice").api.status.command.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = Util.ui.fg("Statement"),
+            function() return "󰕸 " .. require("lazy.status").lsp.get() end,
+          },
+          {
+            function()
+              return ""
+            end,
+            color = { fg = "#22262b" },
+            padding = { left = 1, right = 0 },
+          },
+          {
+            function()
+              return " " .. require("noice").api.status.command.get()
+            end,
+            cond = function()
+              return package.loaded["noice"] and require("noice").api.status.command.has()
+            end,
+            color = { fg = "#e56c73", bg = "#22262b" },
+            padding = 0,
+          },
+          {
+            function()
+              return ""
+            end,
+            color = { fg = "#22262b" },
+            padding = { left = 0, right = 1 },
           },
           -- stylua: ignore
           {
