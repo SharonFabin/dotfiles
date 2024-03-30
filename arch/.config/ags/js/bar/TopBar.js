@@ -11,6 +11,7 @@ import MediaIndicator from "./buttons/MediaIndicator.js";
 import DateButton from "./buttons/DateButton.js";
 import NotificationIndicator from "./buttons/NotificationIndicator.js";
 import KeyboardLayout from "./buttons/KeyboardLayout.js";
+import WarpStatus from "./buttons/WarpStatus.js";
 import SysTray from "./buttons/SysTray.js";
 import ColorPicker from "./buttons/ColorPicker.js";
 import SystemIndicators from "./buttons/SystemIndicators.js";
@@ -90,6 +91,7 @@ const End = () =>
       SeparatorDot(),
       ScreenRecord(),
       SeparatorDot(Recorder, (r) => r.recording),
+      WarpStatus(),
       KeyboardLayout(),
       SeparatorDot(),
       SystemIndicators(),

@@ -9,3 +9,7 @@ if status is-interactive
     alias tmux "env TERM=screen-256color-bce tmux"
     # fish_add_path $HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin
 end
+
+# >>> coursier install directory >>>
+set -gx PATH "$PATH:/home/sharon/.local/share/coursier/bin"
+# <<< coursier install directory <<<
