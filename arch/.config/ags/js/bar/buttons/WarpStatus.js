@@ -25,12 +25,10 @@ export default () =>
     class_name: "quicksettings panel-button",
     // on_clicked: () => App.toggleWindow("quicksettings"),
     on_clicked: async () => {
-      warpStatus.value === "Connected"
-        ? Utils.exec("warp-cli disconnect")
-        : Utils.exec(
-            "warp-cli connect && systemctl restart systemctl-resolved",
-          );
-      // Utils.exec("warp-cli disconnect");
+      if (warpStatus.value === "Connected") {
+        Utils.exec("warp-cli disconnect");
+        Utils.notify("Disconnecting WARP", "", "");
+      }
     },
     setup: (self) =>
       self.hook(App, (_, win, visible) => {

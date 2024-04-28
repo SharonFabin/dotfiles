@@ -98,7 +98,9 @@ export const warpStatus = Variable("", {
         ? "Connected"
         : line.includes("Disconnected")
           ? "Disconnected"
-          : "Connecting";
+          : line.includes("failed")
+            ? "Failed"
+            : "Connecting";
     },
   ],
 });
