@@ -1,4 +1,0 @@
-pacman -Rs xmonad xmonad-contrib xmobar ghc $(pacman -Qq | grep haskell)
-pacman -Syu ghc xmonad xmonad-contrib xmobar
-xmonad --recompile && xmonad --restart
-

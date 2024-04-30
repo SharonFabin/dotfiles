@@ -1,3 +1,0 @@
-#!/bin/sh
-
-(export DISPLAY=:0.0 && /bin/date && /bin/nitrogen --set-auto --random ~/Pictures/wallpapers/slide_show/ --head=0 --save) > /tmp/myNitrogen.log 2>&1

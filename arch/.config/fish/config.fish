@@ -13,3 +13,7 @@ end
 # >>> coursier install directory >>>
 set -gx PATH "$PATH:/home/sharon/.local/share/coursier/bin"
 # <<< coursier install directory <<<
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

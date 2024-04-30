@@ -28,8 +28,9 @@ echo "5. setup backups with timeshift-gtk"
 echo "6. sound problem - install sof-firmware"
 echo "7. mouse lag problem - add to /etc/default/grub in default parameters: usbcore.autosuspend=0"
 echo "8. setup firewall with gufw"
+echo "9. setup theme using nwg-look"
 
 figlet "Welcome" | lolcat && figlet "Back $USER" | lolcat
-read  -n 1 -p "Please Press any key to reboot, run post-install script after reboot!" mainmenuinput
+read -n 1 -p "Please Press any key to reboot, run post-install script after reboot!" mainmenuinput
 sudo systemctl enable sddm
 reboot

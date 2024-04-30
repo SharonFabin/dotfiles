@@ -1,36 +1,22 @@
 # Config
-
-ln -s ~/dotfiles/arch/.config/fish ~/.config/fish
-ln -s ~/dotfiles/arch/.config/xmobar ~/.config/xmobar
-ln -s ~/dotfiles/arch/.config/xmonad ~/.config/xmonad
-ln -s ~/dotfiles/arch/.config/hypr ~/.config/hypr
-ln -s ~/dotfiles/arch/.config/swaylock ~/.config/swaylock
+cd ~/dotfiles/arch/
+stow -v -t ~/.config .config
 sudo ln -s ~/dotfiles/arch/.config/keyd/default.conf /etc/keyd/default.conf
-ln -s ~/dotfiles/arch/.config/alacritty ~/.config/alacritty
-ln -s ~/dotfiles/arch/.config/picom ~/.config/picom
-ln -s ~/dotfiles/arch/.config/rofi ~/.config/rofi
-ln -s ~/dotfiles/arch/.config/eww ~/.config/eww
-ln -s ~/dotfiles/arch/.config/ags ~/.config/ags
-ln -s ~/dotfiles/arch/.config/nvim ~/.config/nvim
-ln -s ~/dotfiles/arch/.config/dunst ~/.config/dunst
-ln -s ~/dotfiles/arch/.config/gtk-3.0 ~/.config/gtk-3.0
-ln -s ~/dotfiles/arch/.config/neofetch ~/.config/neofetch
-ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
-ln -s ~/dotfiles/arch/fonts ~/.local/share/fonts
-fc-cache -fv
 
 # Bash
-mv ~/.bash_profile ~/.bash_profile_backup
+#mv ~/.bash_profile ~/.bash_profile_backup
+#ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 mv ~/.profile ~/.profile_backup
-ln -s ~/dotfiles/arch/.bash_profile ~/.bash_profile
 ln -s ~/dotfiles/arch/.profile ~/.profile
 
 # Scripts
 mkdir /home/sharon/.local/bin
-ln ~/dotfiles/arch/scripts/bin/* ~/.local/bin/
+cd ~/dotfiles/arch/scripts/
+stow -v -t ~/.local/bin bin
 
 # Systemd
-sudo ln -s ~/dotfiles/arch/systemd-services/wakelock@sharon.service /etc/systemd/system/wakelock@sharon.service
+cd ~/dotfiles/arch/systemd-services/
+sudo stow -v -t /etc/systemd/system ~/dotfiles/arch/systemd-services
 
 # SDDM Theme
 sudo mv /usr/share/sddm/themes/sugar-candy/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf_backup

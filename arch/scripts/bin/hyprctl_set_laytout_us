@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# change us_layout_index to the US layout index specified in hypr.conf (the index is the index in the layouts array)
+
+function getDevices {
+	input_string=$(hyprctl devices | awk -F ':' '/Keyboard at/ {getline; print $1}' | tr -d "[:blank:]" | tr '\n' ' ')
+	us_layout_index=0
+
+	IFS=" " read -r -a items <<<"$input_string"
+
+	# Loop through the array and print each item
+	for item in "${items[@]}"; do
+		hyprctl switchxkblayout $item $us_layout_index
+		echo "hyprctl switchxkblayout $item $us_layout_index"
+	done
+}
+
+getDevices
