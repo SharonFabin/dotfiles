@@ -1,2 +1,3 @@
 arch/.config/tmux/plugins/
 arch/.config/tmux/resurrect/
+*nohup*
