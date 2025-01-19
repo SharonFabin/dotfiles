@@ -54,12 +54,12 @@ return {
     opts = function(_, opts)
       local Util = require("lazyvim.util")
       local icons = require("lazyvim.config").icons
-      local colors = {
-        [""] = Util.ui.fg("Special"),
-        ["Normal"] = Util.ui.fg("Special"),
-        ["Warning"] = Util.ui.fg("DiagnosticError"),
-        ["InProgress"] = Util.ui.fg("DiagnosticWarn"),
-      }
+      -- local colors = {
+      --   [""] = Util.ui.fg("Special"),
+      --   ["Normal"] = Util.ui.fg("Special"),
+      --   ["Warning"] = Util.ui.fg("DiagnosticError"),
+      --   ["InProgress"] = Util.ui.fg("DiagnosticWarn"),
+      -- }
 
       opts.options = {
         theme = bubbles_theme,
@@ -152,13 +152,13 @@ return {
           {
             function() return require("noice").api.status.mode.get() end,
             cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = Util.ui.fg("Constant"),
+            color =  { fg = Snacks.util.color("Constant") },
           },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
             cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = Util.ui.fg("Debug"),
+            color = { fg = Snacks.util.color("Debug") }
           },
 
           {
@@ -175,7 +175,7 @@ return {
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = Util.ui.fg("Special"),
+            color = { fg = Snacks.util.color("Special") },
             padding = { left = 0, right = 1 },
           },
         },
