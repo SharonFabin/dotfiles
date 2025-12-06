@@ -7,3 +7,12 @@ min_time = 10_000
 
 [python]
 format = '[${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[gcloud]
+format = ''
+
+[character]
+# vicmd_symbol = "[N](bold green) "
+# vimcmd_symbol = "[N](bold green) "
+# success_symbol = "[I](bold green) "
+# error_symbol = "[I](bold red) "

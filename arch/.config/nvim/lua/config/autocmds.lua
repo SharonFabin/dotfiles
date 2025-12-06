@@ -27,3 +27,17 @@ vim.api.nvim_create_autocmd({
     require("barbecue.ui").update()
   end,
 })
+
+-- -- Fix Enter key behavior in Python files
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "python",
+--   callback = function()
+--     vim.keymap.set("i", "<CR>", function()
+--       if vim.fn.pumvisible() == 1 then
+--         return "<C-e><CR>"
+--       else
+--         return "<CR>"
+--       end
+--     end, { expr = true, buffer = true })
+--   end,
+-- })

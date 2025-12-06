@@ -6,6 +6,7 @@ return {
     event = "InsertEnter",
     build = ":Copilot auth",
     opts = {
+      copilot_node_command = { "node", "--experimental-sqlite" },
       suggestion = {
         enabled = true,
         auto_trigger = true,

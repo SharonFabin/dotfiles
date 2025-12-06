@@ -4,7 +4,7 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        ["python"] = { "black" },
+        ["python"] = { "ruff_format", "ruff_organize_imports", "black" },
       },
     },
   },
