@@ -1,43 +1,8 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+--
 -- Add any additional autocmds here
-vim.api.nvim_create_augroup("neotree", {})
-vim.api.nvim_create_autocmd("UiEnter", {
-  desc = "Open Neotree automatically",
-  group = "neotree",
-  callback = function()
-    if vim.fn.argc() == 0 then
-      vim.cmd("Neotree toggle")
-    end
-  end,
-})
-
--- Barbecue load with better performance
-vim.api.nvim_create_autocmd({
-  "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
-  "BufWinEnter",
-  "CursorHold",
-  "InsertLeave",
-
-  -- include this if you have set `show_modified` to `true`
-  "BufModifiedSet",
-}, {
-  group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-  callback = function()
-    require("barbecue.ui").update()
-  end,
-})
-
--- -- Fix Enter key behavior in Python files
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "python",
---   callback = function()
---     vim.keymap.set("i", "<CR>", function()
---       if vim.fn.pumvisible() == 1 then
---         return "<C-e><CR>"
---       else
---         return "<CR>"
---       end
---     end, { expr = true, buffer = true })
---   end,
--- })
+-- with `vim.api.nvim_create_autocmd`
+--
+-- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
+-- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
