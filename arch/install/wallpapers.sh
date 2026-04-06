@@ -3,7 +3,9 @@
 function wallpapers {
 	echo -e "${BOLD}[wallpapers]${RESET}"
 
-	mkdir -p ~/Pictures/screenshots
+	if [[ "$DRY_RUN" != "1" ]]; then
+		mkdir -p ~/Pictures/screenshots
+	fi
 
 	if [[ -d ~/Pictures/wallpapers/.git ]]; then
 		echo -e "  ${GREEN}Already cloned:${RESET} ~/Pictures/wallpapers"

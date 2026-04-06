@@ -74,7 +74,9 @@ function symlinks {
 
 	# Scripts
 	echo -e "\n${BOLD}[stow scripts]${RESET}"
-	mkdir -p ~/.local/bin
+	if [[ "$DRY_RUN" != "1" ]]; then
+		mkdir -p ~/.local/bin
+	fi
 	if [[ "$DRY_RUN" == "1" ]]; then
 		echo -e "  ${YELLOW}Would stow:${RESET} scripts/bin -> ~/.local/bin"
 		stow -n -v -t ~/.local/bin -d "$DOTFILES_DIR/scripts" bin 2>&1 | sed 's/^/  /'

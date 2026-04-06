@@ -84,8 +84,10 @@ if [[ "$DRY_RUN" == "1" ]]; then
 fi
 
 # --- Execute ---
-chmod -R +x "$DOTFILES_DIR/scripts" 2>/dev/null || true
-chmod -R +x "$DOTFILES_DIR/install" 2>/dev/null || true
+if [[ "$DRY_RUN" != "1" ]]; then
+	chmod -R +x "$DOTFILES_DIR/scripts" 2>/dev/null || true
+	chmod -R +x "$DOTFILES_DIR/install" 2>/dev/null || true
+fi
 
 if [[ -n "$STEP" ]]; then
 	_run_step "$STEP"

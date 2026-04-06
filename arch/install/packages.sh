@@ -66,6 +66,10 @@ function _install_yay {
 		echo -e "  ${GREEN}Already installed:${RESET} yay"
 		return
 	fi
+	if [[ "$DRY_RUN" == "1" ]]; then
+		echo -e "  ${YELLOW}Would install:${RESET} yay (from AUR git)"
+		return
+	fi
 	echo -e "  ${BLUE}Installing:${RESET} yay (from AUR git)..."
 	local tmpdir=$(mktemp -d)
 	git clone https://aur.archlinux.org/yay-git.git "$tmpdir/yay"
