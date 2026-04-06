@@ -85,13 +85,20 @@ function symlinks {
 		stow -v -t ~/.local/bin bin 2>&1 | sed 's/^/  /'
 	fi
 
-	# SDDM theme
-	echo -e "\n${BOLD}[sddm theme]${RESET}"
-	if [[ -d /usr/share/sddm/themes/sugar-candy ]]; then
-		_safe_link "$DOTFILES_DIR/.config/sddm/theme.conf" "/usr/share/sddm/themes/sugar-candy/theme.conf" true
-		_safe_link "$DOTFILES_DIR/.config/sddm/Backgrounds" "/usr/share/sddm/themes/sugar-candy/Backgrounds" true
+	# SDDM
+	echo -e "\n${BOLD}[sddm]${RESET}"
+	if ! command -v sddm &>/dev/null; then
+		echo -e "  ${YELLOW}Skipping:${RESET} sddm not installed (run packages step first)"
 	else
-		echo -e "  ${YELLOW}Skipping:${RESET} sugar-candy theme not installed"
+		# SDDM config (sets theme to sugar-candy)
+		_safe_link "$DOTFILES_DIR/.config/sddm.conf.d" "/etc/sddm.conf.d" true
+
+		# Sugar-candy theme config + wallpaper
+		if [[ -d /usr/share/sddm/themes/sugar-candy ]]; then
+			_safe_link "$DOTFILES_DIR/.config/sddm/theme.conf" "/usr/share/sddm/themes/sugar-candy/theme.conf" true
+			_safe_link "$DOTFILES_DIR/.config/sddm/Backgrounds" "/usr/share/sddm/themes/sugar-candy/Backgrounds" true
+		else
+			echo -e "  ${YELLOW}Skipping:${RESET} sugar-candy theme not installed yet"
+		fi
 	fi
-	_safe_link "$DOTFILES_DIR/.config/sddm.conf.d" "/etc/sddm.conf.d" true
 }

@@ -102,7 +102,6 @@ else
 	if [[ "$DRY_RUN" != "1" ]]; then
 		figlet "Welcome" | lolcat && figlet "Back $USER" | lolcat
 		read -n 1 -p "Press any key to reboot..." _
-		sudo systemctl enable sddm
 		reboot
 	fi
 fi

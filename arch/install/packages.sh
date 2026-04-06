@@ -22,7 +22,7 @@ basics=(
 	# System
 	"networkmanager" "nm-connection-editor"
 	"timeshift" "gufw" "downgrade"
-	"sddm-sugar-candy-git" "sddm-config-editor-git"
+	"sddm" "sddm-sugar-candy-git" "sddm-config-editor-git"
 	"keyd"
 )
 
