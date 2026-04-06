@@ -1,3 +1,4 @@
 arch/.config/tmux/plugins/
 arch/.config/tmux/resurrect/
 *nohup*
+arch/.config/fish/conf.d/local_secrets.fish
