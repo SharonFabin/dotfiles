@@ -1,63 +1,125 @@
 #!/bin/bash
 
-function installGitProgram {
-	which $1 &>/dev/null
+basics=(
+	# Core
+	"yay" "curl" "exfat-utils" "file" "git" "htop" "btop" "nmap"
 
-	if [ $? -ne 0 ]; then
-		echo "installing ${1}..."
-		git clone $2 $1
-		sudo chown -R $USER:$USER ./$1
-		cd $1
-		makepkg -si
-		cd ..
-		rm -rf $1
-	fi
-}
+	# Shell & Terminal
+	"tmux" "fish" "starship" "kitty" "ghostty"
 
-function install {
-	which $1 &>/dev/null
+	# Desktop
+	"rofi-wayland" "playerctl" "pavucontrol"
+	"thunar" "thunar-volman" "thunar-archive-plugin-git" "file-roller-git"
+	"vlc" "imagemagick" "xreader"
 
-	if [ $? -ne 0 ]; then
-		echo "Installing: ${1}..."
-		yay -S --noconfirm $1
-	else
-		echo "Already installed: ${1}"
-	fi
-}
+	# Browsers
+	"firefox" "brave-browser" "google-chrome"
 
-function installPackages {
-	packages=("$@")
-	for package in "${packages[@]}"; do
-		install $package
-	done
-}
+	# Apps
+	"libreoffice-fresh" "libreoffice-fresh-he"
+	"zoom" "postman-bin" "wireshark-qt"
 
-basics=("yay" "curl" "exfat-utils" "file" "git" "htop" "btop" "nmap" "tmux" "fish" "rofi-wayland" "xclip" "alacritty" "lxappearance" "starship" "networkmanager" "nm-connection-editor" "playerctl" "pavucontrol" "i3lock" "xfce4-power-manager" "libreoffice-fresh" "libreoffice-fresh-he" "zoom" "whatsapp-nativefier" "notion-app-enhanced" "timeshift" "imagemagick" "thunar" "thunar-volman" "thunar-archive-plugin-git" "file-roller-git" "wireshark-qt" "xautolock" "vlc" "firefox" "brave-browser" "gufw" "xreader" "postman-bin" "google-chrome" "sddm-sugar-candy-git" "sddm-config-editor-git" "downgrade" "keyd" "kitty" "ghostty")
+	# System
+	"networkmanager" "nm-connection-editor"
+	"timeshift" "gufw" "downgrade"
+	"sddm-sugar-candy-git" "sddm-config-editor-git"
+	"keyd"
+)
 
-utils=("patch" "pkg-conifg" "xdo-git" "devour" "plocate" "cronie" "gvfs" "archlinux-keyring" "gnome-keyring" "polkit" "lxsession-gtk3" "xcape" "autorandr" "pipewire" "pipewire-pulse" "pipewire-jack" "pipewire-alsa" "pipewire-zeroconf" "wireplumber" "bluez" "bluez-utils" "blueman" "lux" "gimp" "grimblast" "wl-clipboard" "wlsunset" "gnome-bluetooth-3.0" "brightnessctl" "sass" "fd" "swww" "fd" "fzf" "bat" "fisher" "jq" "yq" "zoxide")
+utils=(
+	"patch" "plocate" "cronie"
+	"gvfs" "archlinux-keyring" "gnome-keyring" "polkit"
+
+	# Audio
+	"pipewire" "pipewire-pulse" "pipewire-jack" "pipewire-alsa"
+	"pipewire-zeroconf" "wireplumber"
+
+	# Bluetooth
+	"bluez" "bluez-utils" "blueman" "gnome-bluetooth-3.0"
+
+	# Wayland
+	"grimblast" "wl-clipboard" "wlsunset" "brightnessctl" "swww"
+
+	# Tools
+	"sass" "fd" "fzf" "bat" "fisher" "jq" "yq" "zoxide"
+)
 
 fonts=("fontconfig" "nerd-fonts")
 
-themes=("papirus-icon-theme" "plymouth-git" "sweet-gtk-theme-dark" "sweet-cursor-theme-git" "candy-icons-git" "nwg-look-bin")
+themes=(
+	"papirus-icon-theme" "plymouth-git"
+	"sweet-gtk-theme-dark" "sweet-cursor-theme-git" "candy-icons-git"
+	"nwg-look-bin"
+)
 
-hyprland=("hyprland" "xdg-desktop-portal-hyprland" "swaylock" "aylurs-gtk-shell")
+hyprland=(
+	"hyprland" "xdg-desktop-portal-hyprland"
+	"swaylock" "aylurs-gtk-shell"
+)
 
-etc=("figlet" "lolcat" "neofetch")
+etc=("figlet" "lolcat" "fastfetch")
 
 snaps=("spotify")
 
-function packages {
-	echo "==> Installing packages..."
-	installGitProgram yay https://aur.archlinux.org/yay-git.git
-	installPackages "${basics[@]}"
-	installPackages "${utils[@]}"
-	installPackages "${fonts[@]}"
-	installPackages "${themes[@]}"
-	installPackages "${hyprland[@]}"
-	installPackages "${etc[@]}"
+function _install_yay {
+	if command -v yay &>/dev/null; then
+		echo -e "  ${GREEN}Already installed:${RESET} yay"
+		return
+	fi
+	echo -e "  ${BLUE}Installing:${RESET} yay (from AUR git)..."
+	local tmpdir=$(mktemp -d)
+	git clone https://aur.archlinux.org/yay-git.git "$tmpdir/yay"
+	sudo chown -R "$USER:$USER" "$tmpdir/yay"
+	(cd "$tmpdir/yay" && makepkg -si --noconfirm)
+	rm -rf "$tmpdir"
+}
 
-	echo "==> Installing snap packages..."
-	for pkg in "${snaps[@]}"; do
-		sudo snap install "$pkg"
+function _install_pkg {
+	local pkg="$1"
+	if pacman -Qi "$pkg" &>/dev/null; then
+		echo -e "  ${GREEN}Already installed:${RESET} $pkg"
+		return
+	fi
+	if [[ "$DRY_RUN" == "1" ]]; then
+		echo -e "  ${YELLOW}Would install:${RESET} $pkg"
+		return
+	fi
+	echo -e "  ${BLUE}Installing:${RESET} $pkg..."
+	yay -S --noconfirm --needed "$pkg"
+}
+
+function _install_snap {
+	local pkg="$1"
+	if snap list "$pkg" &>/dev/null 2>&1; then
+		echo -e "  ${GREEN}Already installed:${RESET} $pkg (snap)"
+		return
+	fi
+	if [[ "$DRY_RUN" == "1" ]]; then
+		echo -e "  ${YELLOW}Would install:${RESET} $pkg (snap)"
+		return
+	fi
+	echo -e "  ${BLUE}Installing:${RESET} $pkg (snap)..."
+	sudo snap install "$pkg"
+}
+
+function packages {
+	_install_yay
+
+	local groups=("basics" "utils" "fonts" "themes" "hyprland" "etc")
+	for group in "${groups[@]}"; do
+		echo -e "\n${BOLD}[$group]${RESET}"
+		local -n pkgs="$group"
+		for pkg in "${pkgs[@]}"; do
+			_install_pkg "$pkg"
+		done
 	done
+
+	if command -v snap &>/dev/null; then
+		echo -e "\n${BOLD}[snaps]${RESET}"
+		for pkg in "${snaps[@]}"; do
+			_install_snap "$pkg"
+		done
+	else
+		echo -e "\n${YELLOW}Snap not installed, skipping snap packages.${RESET}"
+	fi
 }

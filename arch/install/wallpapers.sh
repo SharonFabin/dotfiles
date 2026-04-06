@@ -1,13 +1,23 @@
 #!/bin/bash
 
 function wallpapers {
-	echo "==> Setting up wallpapers..."
-	mkdir -p ~/Pictures/wallpapers
+	echo -e "${BOLD}[wallpapers]${RESET}"
+
 	mkdir -p ~/Pictures/screenshots
 
-	if [ ! -d ~/Pictures/wallpapers/.git ]; then
-		git clone git@github.com:SharonFabin/wallpapers.git ~/Pictures/wallpapers/
+	if [[ -d ~/Pictures/wallpapers/.git ]]; then
+		echo -e "  ${GREEN}Already cloned:${RESET} ~/Pictures/wallpapers"
+		if [[ "$DRY_RUN" != "1" ]]; then
+			echo -e "  ${BLUE}Pulling latest:${RESET} wallpapers"
+			git -C ~/Pictures/wallpapers pull --ff-only 2>/dev/null || true
+		fi
+	elif [[ "$DRY_RUN" == "1" ]]; then
+		echo -e "  ${YELLOW}Would clone:${RESET} wallpapers repo to ~/Pictures/wallpapers"
 	else
-		echo "Wallpapers repo already cloned."
+		echo -e "  ${BLUE}Cloning:${RESET} wallpapers repo"
+		mkdir -p ~/Pictures/wallpapers
+		git clone git@github.com:SharonFabin/wallpapers.git ~/Pictures/wallpapers/
 	fi
+
+	echo -e "  ${GREEN}Ready:${RESET} ~/Pictures/screenshots"
 }
