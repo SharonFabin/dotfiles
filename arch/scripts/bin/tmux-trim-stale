@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Trim tmux sessions not attached in over N days to a single window.
+# Usage: tmux-trim-stale [days] [--dry-run]
+#   days     - threshold in days (default: 7)
+#   --dry-run - show what would be trimmed without doing anything
+
+DRY_RUN=false
+DAYS=7
+
+for arg in "$@"; do
+    [[ "$arg" == "--dry-run" ]] && DRY_RUN=true
+    [[ "$arg" =~ ^[0-9]+$ ]] && DAYS="$arg"
+done
+
+THRESHOLD=$(( $(date +%s) - DAYS * 86400 ))
+
+tmux list-sessions -F '#{session_last_attached} #{session_name} #{session_windows}' 2>/dev/null | while read -r ts name wins; do
+    # Skip currently attached sessions
+    attached=$(tmux display-message -t "$name" -p '#{session_attached}' 2>/dev/null)
+    [[ "$attached" == "1" ]] && continue
+
+    # Skip sessions already at 1 window
+    [[ "$wins" -le 1 ]] && continue
+
+    # Skip sessions used within threshold
+    [[ "$ts" -gt "$THRESHOLD" ]] && continue
+
+    days_ago=$(( ($(date +%s) - ts) / 86400 ))
+    last_used=$(date -d @"$ts" '+%Y-%m-%d %H:%M' 2>/dev/null || echo "unknown")
+
+    if $DRY_RUN; then
+        echo "[dry-run] Would trim $name: $wins windows → 1 (last used: $last_used, ${days_ago}d ago)"
+    else
+        keep=$(tmux list-windows -t "$name" -F '#{window_index}' | sort -n | head -1)
+        for w in $(tmux list-windows -t "$name" -F '#{window_index}' | sort -rn); do
+            [[ "$w" == "$keep" ]] && continue
+            tmux kill-window -t "$name:$w"
+        done
+        echo "Trimmed $name: $wins windows → 1 (last used: $last_used, ${days_ago}d ago)"
+    fi
+done

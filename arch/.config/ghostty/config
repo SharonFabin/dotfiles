@@ -46,6 +46,8 @@ theme = github-dark
 shell-integration = fish
 font-size = 16
 
+
+background-opacity = 0.8
 window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true

@@ -2,6 +2,7 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      input = { enabled = true },
       scroll = { enabled = false },
       spell = { enabled = true },
       statuscolumn = { enabled = true },

@@ -1,9 +1,0 @@
-add_newline = false
-[line_break]
-disabled = true
-
-[cmd_duration]
-min_time = 10_000
-
-[python]
-format = '[${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
