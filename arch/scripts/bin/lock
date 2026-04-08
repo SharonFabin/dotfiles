@@ -1,53 +1,22 @@
 #!/bin/bash
 
-revert() {
-	rm /tmp/*screen*.png
-}
+trap 'rm -f /tmp/lock_screen.png /tmp/lock_screen_raw.png' HUP INT TERM EXIT
 
-LOCK_VERSIONS=1 # How many lock variations to allow?
+# Show "Locking..." toast immediately
+qs ipc -c noctalia-shell call toast send '{"title":"Locking...","icon":"lock","timeout":3000}' &
 
-lock1() {
-	trap revert HUP INT TERM
-	grim /tmp/lockscreen.png
-	convert -scale 10% -scale 1000% /tmp/lockscreen.png /tmp/screen_blur.png
-	#convert -filter Gaussian -resize 20% -blur 0x2.5 -resize 500% /tmp/lockscreen.png /tmp/screen_blur.png
-	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 /tmp/screen.png
-	# cvlc ~/Music/sounds/locked.wav vlc://quit &
-	# betterlockscreen -u /tmp/screen.png --fx
-	# betterlockscreen -l
-	~/dotfiles/arch/scripts/bin/hyprctl_set_laytout_us
-	swaylock -e -f -i /tmp/screen.png
-	# cvlc ~/Music/sounds/welcome-rick.wav vlc://quit
-}
+# Screenshot immediately (before any processing)
+grim /tmp/lock_screen_raw.png
 
-#lock2(){
-#  setxkbmap us -option "altwin:swap_alt_win"
-#  #~/dotfiles/arch/scripts/bin/vim_keyboard_bindings
-#	trap revert HUP INT TERM
-#	maim /tmp/locking_screen.png
-#	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
-#	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/nezuko-lock.png -gravity South -geometry -20x1200 /tmp/screen.png
-#	i3lock -u -i /tmp/screen.png
-#}
+~/dotfiles/arch/scripts/bin/hyprctl_set_laytout_us &
 
-# lock2() {
-# 	trap revert HUP INT TERM
-# 	maim /tmp/locking_screen.png
-# 	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
-# 	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/jack1.png -gravity Center -geometry -20x1200 /tmp/screen.png
-# 	i3lock -u -i /tmp/screen.png
-# }
+# Blur + composite overlay
+magick /tmp/lock_screen_raw.png -scale 10% -scale 1000% \
+  \( ~/Pictures/wallpapers/lock_screen/rick_and_morty_lock_shade.png -gravity South -geometry -20x1200 \) \
+  -composite /tmp/lock_screen.png
+rm -f /tmp/lock_screen_raw.png
 
-# lock3(){
-# 	trap revert HUP INT TERM
-# 	maim /tmp/locking_screen.png
-# 	convert -scale 10% -scale 1000% /tmp/locking_screen.png /tmp/screen_blur.png
-# 	convert -composite /tmp/screen_blur.png ~/Pictures/wallpapers/lock_screen/bobsponge1.png -gravity Center -geometry -20x1200 /tmp/screen.png
-# 	i3lock -u -i /tmp/screen.png
-# }
-
-VERSION=$((1 + $RANDOM % $LOCK_VERSIONS))
-SELECTED_LOCK_FUNCTION="lock$VERSION"
-$SELECTED_LOCK_FUNCTION
-
-revert
+# Dismiss toast, dismiss stretch reminder if alarming, and lock
+qs ipc -c noctalia-shell call toast dismiss &
+qs ipc -c noctalia-shell call plugin:stretch-reminder reset &
+swaylock -e -f -i /tmp/lock_screen.png

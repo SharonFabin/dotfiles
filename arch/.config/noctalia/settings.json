@@ -116,7 +116,7 @@
                         "snoozeMinutes": 2,
                         "soundVolume": 0.7
                     },
-                    "id": "plugin:position-reminder"
+                    "id": "plugin:stretch-reminder"
                 }
             ],
             "left": [
@@ -509,7 +509,7 @@
         "bluetoothRssiPollIntervalMs": 60000,
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
-        "networkPanelView": "wifi",
+        "networkPanelView": "ethernet",
         "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
