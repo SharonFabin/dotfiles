@@ -18,6 +18,10 @@
         "claude-sessions": {
             "enabled": true,
             "sourceUrl": "local"
+        },
+        "stretch-reminder": {
+            "enabled": true,
+            "sourceUrl": "local"
         }
     },
     "version": 2
