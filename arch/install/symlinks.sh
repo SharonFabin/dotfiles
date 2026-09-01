@@ -85,6 +85,10 @@ function symlinks {
 		stow -v -t ~/.local/bin bin 2>&1 | sed 's/^/  /'
 	fi
 
+	# Claude Code statusline
+	echo -e "\n${BOLD}[claude]${RESET}"
+	_safe_link "$DOTFILES_DIR/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+
 	# SDDM
 	echo -e "\n${BOLD}[sddm]${RESET}"
 	if ! command -v sddm &>/dev/null; then
